@@ -118,48 +118,55 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-[#E31E24] selection:text-white">
-      {/* 1. Header Navigation */}
-      <Header />
+      {/* =========================================================================
+          SECTION 1: CINEMATIC HERO SECTION (Matching Reference Image)
+          Full-width industrial sunset substation background with transparent navbar
+         ========================================================================= */}
+      <section className="relative min-h-[75vh] sm:min-h-[80vh] lg:min-h-[85vh] bg-[#040810] text-white flex flex-col justify-between overflow-hidden">
+        {/* Full-Width Panoramic Background Image */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0">
+          <Image
+            src="/images/contact-hero-bg.jpg"
+            alt="Electrical Substation and Power Transmission Infrastructure at Sunset"
+            fill
+            sizes="100vw"
+            className="object-cover object-center sm:object-[center_35%]"
+            priority
+          />
+          {/* Subtle Dark Navy / Twilight Vignette Overlay ensuring clear readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#040810]/90 via-[#040810]/35 to-[#040810]/60" />
+          <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#040810]/20 to-[#040810]/65" />
+        </div>
+
+        {/* 1. Transparent Integrated Navbar */}
+        <Header variant="transparent" activePage="Contact Us" />
+
+        {/* 2. Centered Hero Typography Layer */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto pt-24 pb-16 sm:pt-28 sm:pb-20">
+          {/* Small Eyebrow Text: CONTACT US */}
+          <div className="inline-flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-widest text-slate-200 mb-4 sm:mb-5">
+            <span className="w-6 sm:w-8 h-0.5 bg-[#E31E24]" />
+            <span>CONTACT US</span>
+            <span className="w-6 sm:w-8 h-0.5 bg-[#E31E24]" />
+          </div>
+
+          {/* Main Heading: LET'S BUILD WITH PRECISION. */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black tracking-tight uppercase leading-[1.08] font-sans mb-4 sm:mb-6 drop-shadow-md">
+            <span className="text-white block">LET’S BUILD WITH</span>
+            <span className="text-[#E31E24] block">PRECISION.</span>
+          </h1>
+
+          {/* Supporting Line: Engineering connections. Powering progress. */}
+          <p className="text-base sm:text-xl lg:text-2xl text-slate-200 font-normal tracking-wide max-w-2xl mx-auto drop-shadow-sm">
+            Engineering connections. Powering progress.
+          </p>
+        </div>
+
+        {/* Bottom subtle anchor spacer */}
+        <div className="h-6 sm:h-8" />
+      </section>
 
       <main className="flex-grow">
-        {/* =========================================================================
-            SECTION 1: HERO HEADER BANNER (Dark Background with Industrial Imagery)
-           ========================================================================= */}
-        <section className="relative bg-[#040810] text-white py-20 sm:py-24 lg:py-28 overflow-hidden">
-          {/* Industrial Power Infrastructure Background */}
-          <div className="absolute inset-0 pointer-events-none select-none z-0">
-            <Image
-              src="/images/why-choose-bg.jpg"
-              alt="Electrical substation and transmission power infrastructure"
-              fill
-              sizes="100vw"
-              className="object-cover object-center opacity-20"
-              priority
-            />
-            {/* Dark Navy / Charcoal Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#040810]/95 via-[#081020]/90 to-[#040810]/95" />
-            <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#040810]/60 to-[#040810]" />
-          </div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            {/* Overline Badge */}
-            <div className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#E31E24] mb-4">
-              <span>— CONTACT</span>
-            </div>
-
-            {/* Hero Main Heading */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight uppercase leading-tight font-sans max-w-4xl mx-auto mb-5">
-              LET&apos;S BUILD WITH <span className="text-[#E31E24]">PRECISION.</span>
-            </h1>
-
-            {/* Hero Subtitle */}
-            <p className="text-sm sm:text-base lg:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
-              Have a requirement? Let&apos;s discuss how our substation connectors, transmission
-              hardware, earthing systems, and custom engineering capabilities can support your
-              project.
-            </p>
-          </div>
-        </section>
 
         {/* =========================================================================
             SECTION 2: MAIN 2-COLUMN SPLIT (Light Gray / Slate Background)

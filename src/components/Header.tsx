@@ -7,9 +7,11 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 
 interface HeaderProps {
   onOpenEnquiry?: () => void;
+  variant?: 'white' | 'transparent';
+  activePage?: string;
 }
 
-export default function Header({ onOpenEnquiry }: HeaderProps) {
+export default function Header({ onOpenEnquiry, variant = 'white', activePage }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -42,18 +44,24 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
     { label: 'Contact Us', href: '/contact' }
   ];
 
+  const isTransparent = variant === 'transparent' && !scrolled;
+
   return (
     <>
-      {/* Clean, Spacious, White Header */}
+      {/* Header Container */}
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 bg-white ${
-          scrolled
-            ? 'shadow-sm border-b border-neutral-200/90 py-3.5'
-            : 'border-b border-neutral-200/60 py-4.5'
+        className={`w-full transition-all duration-300 ${
+          variant === 'transparent'
+            ? scrolled
+              ? 'sticky top-0 z-40 bg-[#040810]/95 backdrop-blur-md border-b border-slate-800/80 py-3.5 shadow-lg'
+              : 'absolute top-0 left-0 right-0 z-40 bg-transparent border-b border-white/10 py-5'
+            : scrolled
+              ? 'sticky top-0 z-40 bg-white shadow-sm border-b border-neutral-200/90 py-3.5'
+              : 'sticky top-0 z-40 bg-white border-b border-neutral-200/60 py-4.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Left: EXACT ORIGINAL LOGO ONLY (No text beside or below) */}
+          {/* Left: EXACT ORIGINAL LOGO ONLY */}
           <Link
             href="/"
             className="flex items-center focus:outline-none focus:ring-2 focus:ring-[#E31E24] rounded-lg p-0.5"
@@ -62,24 +70,35 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
             <VaradLogo size="md" />
           </Link>
 
-          {/* Center / Navigation Links (16px Font Size, Clean & Readable) */}
+          {/* Center / Navigation Links */}
           <nav className="hidden md:flex items-center gap-8 lg:gap-10">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-[16px] font-medium text-neutral-800 hover:text-[#E31E24] transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#E31E24] hover:after:w-full after:transition-all after:duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activePage ? link.label === activePage : false;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={`text-[15px] lg:text-[16px] font-medium transition-colors py-1 relative ${
+                    isTransparent || (variant === 'transparent' && scrolled)
+                      ? isActive
+                        ? 'text-white font-semibold after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#E31E24]'
+                        : 'text-slate-200 hover:text-white after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#E31E24] hover:after:w-full after:transition-all after:duration-200'
+                      : isActive
+                        ? 'text-[#E31E24] font-semibold after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#E31E24]'
+                        : 'text-neutral-800 hover:text-[#E31E24] after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#E31E24] hover:after:w-full after:transition-all after:duration-200'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </nav>
 
           {/* Right CTA Button Only */}
           <div className="hidden md:flex items-center">
             <button
               onClick={onOpenEnquiry}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md bg-[#E31E24] hover:bg-[#C9181E] text-white text-[15px] font-bold tracking-wide transition-all shadow-sm hover:shadow active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#E31E24] hover:bg-[#C9181E] text-white text-[15px] font-bold tracking-wide transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
             >
               <span>Get in Touch</span>
               <ArrowRight className="w-4 h-4" />
@@ -90,13 +109,17 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
           <div className="flex items-center gap-3 md:hidden">
             <button
               onClick={onOpenEnquiry}
-              className="px-3.5 py-1.5 rounded bg-[#E31E24] text-white text-xs font-bold tracking-wide"
+              className="px-3.5 py-1.5 rounded-lg bg-[#E31E24] text-white text-xs font-bold tracking-wide shadow-sm"
             >
               Enquire
             </button>
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="p-2 rounded-lg text-neutral-700 hover:text-neutral-950 hover:bg-neutral-100 transition-colors focus:outline-none"
+              className={`p-2 rounded-lg transition-colors focus:outline-none ${
+                isTransparent || (variant === 'transparent' && scrolled)
+                  ? 'text-white hover:bg-white/10'
+                  : 'text-neutral-700 hover:text-neutral-950 hover:bg-neutral-100'
+              }`}
               aria-label="Open Navigation Menu"
             >
               <Menu className="w-6 h-6" />
