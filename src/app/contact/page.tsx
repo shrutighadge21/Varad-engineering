@@ -2,9 +2,22 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { COMPANY_DETAILS } from '@/data/products';
+
+const LocationMap = dynamic(() => import('@/components/LocationMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[400px] sm:h-[460px] lg:h-[500px] rounded-2xl bg-slate-950 flex items-center justify-center text-slate-400 border border-slate-800">
+      <div className="flex items-center gap-3 text-sm">
+        <span className="w-5 h-5 border-2 border-[#E31E24] border-t-transparent rounded-full animate-spin" />
+        <span>Loading interactive map with location pin...</span>
+      </div>
+    </div>
+  )
+});
 import {
   Phone,
   Mail,
@@ -550,67 +563,13 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Google Map Container with Verified Company Pin & Directions Action */}
-            <div className="relative rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-950">
-              {/* Responsive Google Maps Embed with Exact Company Address Pin */}
-              <iframe
-                title="M/s. Varad Engineering Verified Location"
-                src={googleMapsEmbedUrl}
-                width="100%"
-                height="480"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-[400px] sm:h-[450px] lg:h-[490px] opacity-95 transition-opacity"
-              />
-
-              {/* Floating Verified Company Location Card (Top-Left on Desktop) */}
-              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10 max-w-[280px] sm:max-w-sm bg-[#040810]/95 backdrop-blur-md p-4 sm:p-5 rounded-xl border border-slate-700/90 shadow-2xl text-left pointer-events-auto">
-                <div className="flex items-start gap-3 mb-2">
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#E31E24] text-white flex items-center justify-center flex-shrink-0 shadow-md">
-                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 fill-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm sm:text-base font-bold text-white font-sans leading-snug">
-                      M/s. Varad Engineering
-                    </h4>
-                    <span className="text-[11px] font-semibold text-[#E31E24] uppercase tracking-wider block mt-0.5">
-                      Manufacturing Facility
-                    </span>
-                  </div>
-                </div>
-                <p className="text-xs text-slate-300 leading-relaxed mb-3">
-                  Plot No. 78, Gat No. 447, Nr. Vinzai Comp., Wadmukhwadi, Charholi, Pune – 412105, Maharashtra, India.
-                </p>
-                <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-                  <span className="text-[#E31E24] font-medium">CPRI Approved</span>
-                  <a
-                    href={googleMapsDirectionsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white hover:text-[#E31E24] font-semibold inline-flex items-center gap-1 transition-colors"
-                  >
-                    <span>Navigate</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Get Directions Floating Action Button (Bottom-Right) */}
-              <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-10">
-                <a
-                  href={googleMapsDirectionsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-5 py-3 sm:px-6 sm:py-3.5 rounded-xl bg-[#E31E24] hover:bg-[#C9181E] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-                >
-                  <MapPin className="w-4 h-4" />
-                  <span>GET DIRECTIONS IN GOOGLE MAPS</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
+            {/* Interactive Location Map with Guaranteed Rendered Pin & Google Directions Action */}
+            <LocationMap
+              companyName={COMPANY_DETAILS.name}
+              legalName={COMPANY_DETAILS.legalName}
+              addressText={`${COMPANY_DETAILS.address.plot}, ${COMPANY_DETAILS.address.landmark}, ${COMPANY_DETAILS.address.locality}, ${COMPANY_DETAILS.address.city} – ${COMPANY_DETAILS.address.pincode}, ${COMPANY_DETAILS.address.state}, ${COMPANY_DETAILS.address.country}.`}
+              directionsUrl={googleMapsDirectionsUrl}
+            />
           </div>
         </section>
       </main>
