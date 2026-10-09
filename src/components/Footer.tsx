@@ -22,17 +22,17 @@ export default function Footer() {
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Areas of Expertise', href: '#expertise' },
-    { label: 'Gallery', href: '#gallery' },
-    { label: 'Contact Us', href: '#contact' }
+    { label: 'Services', href: '/#services' },
+    { label: 'Areas of Expertise', href: '/#expertise' },
+    { label: 'Gallery', href: '/#gallery' },
+    { label: 'Contact Us', href: '/#contact' }
   ];
 
   const serviceLinks = [
-    { label: 'Connectors & Clamps', href: '#services' },
-    { label: 'Substation Hardware', href: '#services' },
-    { label: 'Transmission Line Hardware', href: '#services' },
-    { label: 'Custom Engineering Solutions', href: '#services' },
+    { label: 'Connectors & Clamps', href: '/#services' },
+    { label: 'Substation Hardware', href: '/#services' },
+    { label: 'Transmission Line Hardware', href: '/#services' },
+    { label: 'Custom Engineering Solutions', href: '/#services' },
     { label: 'Quality & Testing', href: '/about' }
   ];
 
@@ -214,7 +214,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-slate-300 hover:text-[#E31E24] hover:underline transition-colors font-medium"
               >
-                QIRO TECH Innovation Pvt. Ltd.
+                Qiro Tech Innovation Pvt. Ltd.
               </a>
             </div>
 

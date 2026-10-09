@@ -36,10 +36,10 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
   // Exactly the 5 requested navbar links
   const navLinks = [
     { label: 'Home', href: '/' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Gallery', href: '#gallery' },
-    { label: 'Contact Us', href: '#contact' }
+    { label: 'About Us', href: '/about' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Gallery', href: '/#gallery' },
+    { label: 'Contact Us', href: '/#contact' }
   ];
 
   return (

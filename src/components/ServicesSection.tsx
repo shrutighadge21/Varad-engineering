@@ -70,12 +70,12 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
   };
 
   return (
-    <section id="services" className="py-16 lg:py-24 bg-white text-neutral-900 relative overflow-hidden">
+    <section id="services" className="pt-14 sm:pt-16 lg:pt-20 pb-10 sm:pb-12 lg:pb-12 bg-white text-neutral-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* =========================================================================
             TOP FEATURED AREA: Left Title, Center 3D Product Visual, Right Details
            ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center mb-14 lg:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center mb-10 sm:mb-12 lg:mb-12">
           {/* 1. Left Side: Section Title & Description */}
           <div className="lg:col-span-4 space-y-5">
             {/* Small Red Eyebrow */}

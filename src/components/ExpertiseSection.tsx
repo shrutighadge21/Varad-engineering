@@ -65,7 +65,7 @@ export default function ExpertiseSection({ onExploreCategory }: ExpertiseSection
   };
 
   return (
-    <section id="expertise" className="py-20 lg:py-28 bg-white text-neutral-900 relative overflow-hidden">
+    <section id="expertise" className="py-10 sm:py-12 lg:py-14 bg-white text-neutral-900 relative overflow-hidden">
       {/* Pure Vector Transmission Tower Lattice Outline (0 text, 0 bitmaps, 100% clean vector art) */}
       <div className="absolute left-0 top-0 bottom-0 w-44 sm:w-56 lg:w-72 pointer-events-none opacity-[0.04] text-neutral-900 select-none z-0">
         <svg

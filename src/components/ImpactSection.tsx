@@ -95,7 +95,7 @@ const impactCards: ImpactCard[] = [
 
 export default function ImpactSection() {
   return (
-    <section id="impact" className="relative py-12 sm:py-16 lg:py-20 bg-[#fbfbfb] text-neutral-900 overflow-hidden border-t border-neutral-200/60">
+    <section id="impact" className="relative pt-10 sm:pt-12 lg:pt-14 pb-12 sm:pb-16 lg:pb-18 bg-[#fbfbfb] text-neutral-900 overflow-hidden border-t border-neutral-200/60">
       {/* Subtle Background Architectural Grid / Transmission Watermark */}
       <div className="absolute inset-0 pointer-events-none select-none opacity-[0.06] mix-blend-multiply overflow-hidden z-0">
         <Image
