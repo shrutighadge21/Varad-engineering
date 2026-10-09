@@ -39,7 +39,7 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
     { label: 'About Us', href: '/about' },
     { label: 'Services', href: '/#services' },
     { label: 'Gallery', href: '/#gallery' },
-    { label: 'Contact Us', href: '/#contact' }
+    { label: 'Contact Us', href: '/contact' }
   ];
 
   return (

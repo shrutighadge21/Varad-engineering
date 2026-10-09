@@ -25,7 +25,7 @@ export default function Footer() {
     { label: 'Services', href: '/#services' },
     { label: 'Areas of Expertise', href: '/#expertise' },
     { label: 'Gallery', href: '/#gallery' },
-    { label: 'Contact Us', href: '/#contact' }
+    { label: 'Contact Us', href: '/contact' }
   ];
 
   const serviceLinks = [
