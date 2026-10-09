@@ -119,10 +119,10 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-[#E31E24] selection:text-white">
       {/* =========================================================================
-          SECTION 1: CINEMATIC HERO SECTION (Matching Reference Image)
+          SECTION 1: CINEMATIC HERO SECTION (Refined Height & Typography)
           Full-width industrial sunset substation background with transparent navbar
          ========================================================================= */}
-      <section className="relative min-h-[75vh] sm:min-h-[80vh] lg:min-h-[85vh] bg-[#040810] text-white flex flex-col justify-between overflow-hidden">
+      <section className="relative min-h-[58vh] sm:min-h-[62vh] lg:min-h-[66vh] xl:min-h-[68vh] bg-[#040810] text-white flex flex-col justify-between overflow-hidden">
         {/* Full-Width Panoramic Background Image */}
         <div className="absolute inset-0 pointer-events-none select-none z-0">
           <Image
@@ -141,29 +141,29 @@ export default function ContactPage() {
         {/* 1. Transparent Integrated Navbar */}
         <Header variant="transparent" activePage="Contact Us" />
 
-        {/* 2. Centered Hero Typography Layer */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto pt-24 pb-16 sm:pt-28 sm:pb-20">
+        {/* 2. Centered Hero Typography Layer (Balanced ~65-70vh Scale) */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto pt-20 pb-10 sm:pt-24 sm:pb-12 lg:pt-24 lg:pb-14">
           {/* Small Eyebrow Text: CONTACT US */}
-          <div className="inline-flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-widest text-slate-200 mb-4 sm:mb-5">
-            <span className="w-6 sm:w-8 h-0.5 bg-[#E31E24]" />
+          <div className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-widest text-slate-300 mb-3 sm:mb-4">
+            <span className="w-5 sm:w-7 h-0.5 bg-[#E31E24]" />
             <span>CONTACT US</span>
-            <span className="w-6 sm:w-8 h-0.5 bg-[#E31E24]" />
+            <span className="w-5 sm:w-7 h-0.5 bg-[#E31E24]" />
           </div>
 
-          {/* Main Heading: LET'S BUILD WITH PRECISION. */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black tracking-tight uppercase leading-[1.08] font-sans mb-4 sm:mb-6 drop-shadow-md">
+          {/* Main Heading: LET'S BUILD WITH PRECISION. (Reduced ~18% for balanced scale) */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[58px] font-black tracking-tight uppercase leading-[1.12] font-sans mb-3 sm:mb-4 drop-shadow-md">
             <span className="text-white block">LET’S BUILD WITH</span>
             <span className="text-[#E31E24] block">PRECISION.</span>
           </h1>
 
-          {/* Supporting Line: Engineering connections. Powering progress. */}
-          <p className="text-base sm:text-xl lg:text-2xl text-slate-200 font-normal tracking-wide max-w-2xl mx-auto drop-shadow-sm">
+          {/* Supporting Line: 16–18px on desktop */}
+          <p className="text-sm sm:text-base lg:text-[17px] text-slate-200 font-normal tracking-wide max-w-xl mx-auto drop-shadow-sm">
             Engineering connections. Powering progress.
           </p>
         </div>
 
         {/* Bottom subtle anchor spacer */}
-        <div className="h-6 sm:h-8" />
+        <div className="h-2 sm:h-4" />
       </section>
 
       <main className="flex-grow">
