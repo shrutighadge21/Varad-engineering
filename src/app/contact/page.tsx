@@ -112,9 +112,16 @@ export default function ContactPage() {
     setIsSubmitted(false);
   };
 
-  const googleMapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    'Varad Engineering Plot No 78 Gat No 447 Wadmukhwadi Charholi Pune 412105'
+  const verifiedCompanyDestination =
+    'M/s. Varad Engineering, Plot No. 78, Gat No. 447, Nr Vinzai Comp, Wadmukhwadi, Charholi, Pune 412105';
+
+  const googleMapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+    verifiedCompanyDestination
   )}`;
+
+  const googleMapsEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
+    verifiedCompanyDestination
+  )}&t=&z=15&ie=UTF8&iwloc=B&output=embed`;
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-[#E31E24] selection:text-white">
@@ -543,28 +550,62 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Google Map Container with Action Overlay */}
+            {/* Google Map Container with Verified Company Pin & Directions Action */}
             <div className="relative rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-950">
+              {/* Responsive Google Maps Embed with Exact Company Address Pin */}
               <iframe
-                title="Varad Engineering Facility Location"
-                src="https://maps.google.com/maps?q=Plot%20No.%2078,%20Gat%20No.%20447,%20Nr%20Vinzai%20Comp,%20Wadmukhwadi,%20Charholi,%20Pune%20412105&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                title="M/s. Varad Engineering Verified Location"
+                src={googleMapsEmbedUrl}
                 width="100%"
-                height="460"
+                height="480"
                 style={{ border: 0 }}
-                allowFullScreen={false}
+                allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-[380px] sm:h-[440px] lg:h-[480px] filter grayscale contrast-125 opacity-90 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
+                className="w-full h-[400px] sm:h-[450px] lg:h-[490px] opacity-95 transition-opacity"
               />
 
-              {/* Get Directions Floating Action Button */}
-              <div className="absolute bottom-6 right-6 z-10">
+              {/* Floating Verified Company Location Card (Top-Left on Desktop) */}
+              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10 max-w-[280px] sm:max-w-sm bg-[#040810]/95 backdrop-blur-md p-4 sm:p-5 rounded-xl border border-slate-700/90 shadow-2xl text-left pointer-events-auto">
+                <div className="flex items-start gap-3 mb-2">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#E31E24] text-white flex items-center justify-center flex-shrink-0 shadow-md">
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 fill-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm sm:text-base font-bold text-white font-sans leading-snug">
+                      M/s. Varad Engineering
+                    </h4>
+                    <span className="text-[11px] font-semibold text-[#E31E24] uppercase tracking-wider block mt-0.5">
+                      Manufacturing Facility
+                    </span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                  Plot No. 78, Gat No. 447, Nr. Vinzai Comp., Wadmukhwadi, Charholi, Pune – 412105, Maharashtra, India.
+                </p>
+                <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+                  <span className="text-[#E31E24] font-medium">CPRI Approved</span>
+                  <a
+                    href={googleMapsDirectionsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-[#E31E24] font-semibold inline-flex items-center gap-1 transition-colors"
+                  >
+                    <span>Navigate</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Get Directions Floating Action Button (Bottom-Right) */}
+              <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-10">
                 <a
-                  href={googleMapsSearchUrl}
+                  href={googleMapsDirectionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-[#040810]/95 hover:bg-[#E31E24] text-white text-xs sm:text-sm font-bold uppercase tracking-wider border border-slate-700/80 hover:border-[#E31E24] shadow-xl backdrop-blur-sm transition-all duration-300 cursor-pointer"
+                  className="inline-flex items-center gap-2.5 px-5 py-3 sm:px-6 sm:py-3.5 rounded-xl bg-[#E31E24] hover:bg-[#C9181E] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
                 >
+                  <MapPin className="w-4 h-4" />
                   <span>GET DIRECTIONS IN GOOGLE MAPS</span>
                   <ExternalLink className="w-4 h-4" />
                 </a>
