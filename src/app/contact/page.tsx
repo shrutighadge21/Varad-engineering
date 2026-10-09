@@ -2,22 +2,11 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { COMPANY_DETAILS } from '@/data/products';
 
-const LocationMap = dynamic(() => import('@/components/LocationMap'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-[400px] sm:h-[460px] lg:h-[500px] rounded-2xl bg-slate-950 flex items-center justify-center text-slate-400 border border-slate-800">
-      <div className="flex items-center gap-3 text-sm">
-        <span className="w-5 h-5 border-2 border-[#E31E24] border-t-transparent rounded-full animate-spin" />
-        <span>Loading interactive map with location pin...</span>
-      </div>
-    </div>
-  )
-});
+import LocationMap from '@/components/LocationMap';
 import {
   Phone,
   Mail,

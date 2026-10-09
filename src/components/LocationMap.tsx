@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { MapPin, ExternalLink, Navigation, Compass } from 'lucide-react';
-import 'leaflet/dist/leaflet.css';
+import React from 'react';
+import { MapPin, ExternalLink, Navigation, CheckCircle2 } from 'lucide-react';
 
 interface LocationMapProps {
   companyName: string;
@@ -17,116 +16,53 @@ export default function LocationMap({
   addressText,
   directionsUrl
 }: LocationMapProps) {
-  const mapContainerRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<any>(null);
-  const [mapLoaded, setMapLoaded] = useState(false);
-
-  // Exact coordinates for M/s. Varad Engineering (Wadmukhwadi / Charholi, Pune)
-  const latitude = 18.6472;
+  // Verified coordinates for M/s. Varad Engineering (Plot No. 78, Gat No. 447, Wadmukhwadi, Charholi, Pune 412105)
+  const latitude = 18.647222;
   const longitude = 73.8825;
 
-  useEffect(() => {
-    let isMounted = true;
-
-    async function initMap() {
-      if (!mapContainerRef.current || mapInstanceRef.current) return;
-
-      const L = (await import('leaflet')).default;
-
-      if (!isMounted || !mapContainerRef.current) return;
-
-      // Initialize map instance
-      const map = L.map(mapContainerRef.current, {
-        center: [latitude, longitude],
-        zoom: 15,
-        zoomControl: true,
-        scrollWheelZoom: false
-      });
-
-      mapInstanceRef.current = map;
-
-      // Add high-resolution clean tile layer
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-
-      // Create Custom High-Visibility Brand Red Location Marker with Pulsing Radar
-      const customPinHtml = `
-        <div class="relative flex items-center justify-center cursor-pointer group" style="transform: translate(-50%, -100%);">
-          <!-- Pulsing Radar Wave -->
-          <div class="absolute -bottom-1 w-8 h-8 bg-red-600/30 rounded-full animate-ping pointer-events-none"></div>
-          <div class="absolute -bottom-1 w-4 h-4 bg-red-600/50 rounded-full pointer-events-none"></div>
-          
-          <!-- Main Pin Icon -->
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-10 h-10 rounded-full bg-[#E31E24] border-2 border-white shadow-xl flex items-center justify-center text-white transition-transform transform group-hover:scale-110">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-                <circle cx="12" cy="10" r="3" fill="#E31E24"/>
-              </svg>
-            </div>
-            <!-- Pin Pointer Tip -->
-            <div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-[#E31E24] -mt-[1px]"></div>
-          </div>
-        </div>
-      `;
-
-      const customIcon = L.divIcon({
-        className: 'custom-leaflet-marker',
-        html: customPinHtml,
-        iconSize: [40, 48],
-        iconAnchor: [20, 48],
-        popupAnchor: [0, -50]
-      });
-
-      // Add Marker
-      const marker = L.marker([latitude, longitude], { icon: customIcon }).addTo(map);
-
-      // Popup content
-      const popupHtml = `
-        <div style="font-family: inherit; padding: 4px 2px; min-width: 220px; color: #0f172a;">
-          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
-            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #E31E24;"></span>
-            <strong style="font-size: 14px; color: #0B192C; font-weight: 700;">${legalName}</strong>
-          </div>
-          <p style="font-size: 11px; color: #475569; margin: 4px 0 8px 0; line-height: 1.4;">
-            ${addressText}
-          </p>
-          <div style="padding-top: 6px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 10px; color: #E31E24; font-weight: 600;">CPRI Approved Facility</span>
-            <a href="${directionsUrl}" target="_blank" rel="noopener noreferrer" style="font-size: 11px; color: #0B192C; font-weight: 700; text-decoration: underline;">
-              Get Directions ↗
-            </a>
-          </div>
-        </div>
-      `;
-
-      marker.bindPopup(popupHtml, { autoClose: false, closeOnClick: false }).openPopup();
-
-      if (isMounted) {
-        setMapLoaded(true);
-      }
-    }
-
-    initMap();
-
-    return () => {
-      isMounted = false;
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current.remove();
-        mapInstanceRef.current = null;
-      }
-    };
-  }, [latitude, longitude, legalName, addressText, directionsUrl]);
+  const googleMapsEmbedUrl = `https://maps.google.com/maps?q=${latitude},${longitude}+(${encodeURIComponent(
+    legalName
+  )})&ll=${latitude},${longitude}&z=16&t=m&hl=en&output=embed`;
 
   return (
-    <div className="relative w-full h-[400px] sm:h-[460px] lg:h-[500px] rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-950">
-      {/* Map DOM Canvas */}
-      <div ref={mapContainerRef} className="w-full h-full z-0" />
+    <div className="relative w-full h-[420px] sm:h-[480px] lg:h-[520px] rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-950">
+      {/* 1. Underlying Google Maps Iframe (Centered on Verified Coordinates) */}
+      <iframe
+        title="M/s. Varad Engineering Verified Location Map"
+        src={googleMapsEmbedUrl}
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen={true}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        className="w-full h-full opacity-95 transition-opacity"
+      />
 
-      {/* Top-Left Floating Verified Location Info Card */}
-      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-[1000] max-w-[280px] sm:max-w-sm bg-[#040810]/95 backdrop-blur-md p-4 sm:p-5 rounded-xl border border-slate-700/90 shadow-2xl text-left pointer-events-auto">
+      {/* 2. Prominent, Clearly Visible Brand Red Location Pin Marker (Centered at Exact Premises) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[calc(100%-8px)] pointer-events-none z-20 flex flex-col items-center">
+        {/* Pulsing Radar Wave at Ground Point */}
+        <div className="absolute bottom-0 w-10 h-10 bg-red-600/30 rounded-full animate-ping pointer-events-none" />
+        <div className="absolute bottom-1 w-5 h-2 bg-black/40 rounded-full blur-[1px]" />
+
+        {/* Company Name Badge on Top of Marker Pin */}
+        <div className="bg-[#040810]/95 backdrop-blur-md text-white text-[11px] sm:text-xs font-bold py-1.5 px-3 rounded-lg border border-[#E31E24] shadow-2xl mb-1.5 flex items-center gap-1.5 whitespace-nowrap animate-bounce">
+          <span className="w-2 h-2 rounded-full bg-[#E31E24] animate-pulse" />
+          <span>{legalName}</span>
+        </div>
+
+        {/* Brand Red Pin Head */}
+        <div className="relative flex flex-col items-center group">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#E31E24] border-2 border-white shadow-2xl flex items-center justify-center text-white">
+            <MapPin className="w-5 h-5 sm:w-6 sm:h-6 fill-white" />
+          </div>
+          {/* Pin Pointer Tip */}
+          <div className="w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-t-[10px] border-t-[#E31E24] -mt-[1px]" />
+        </div>
+      </div>
+
+      {/* 3. Top-Left Floating Verified Location Info Card */}
+      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-30 max-w-[280px] sm:max-w-sm bg-[#040810]/95 backdrop-blur-md p-4 sm:p-5 rounded-xl border border-slate-700/90 shadow-2xl text-left pointer-events-auto">
         <div className="flex items-start gap-3 mb-2">
           <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#E31E24] text-white flex items-center justify-center flex-shrink-0 shadow-md">
             <MapPin className="w-4 h-4 sm:w-5 sm:h-5 fill-white" />
@@ -142,7 +78,10 @@ export default function LocationMap({
         </div>
         <p className="text-xs text-slate-300 leading-relaxed mb-3">{addressText}</p>
         <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-          <span className="text-[#E31E24] font-medium">CPRI Approved</span>
+          <span className="text-[#E31E24] font-medium flex items-center gap-1">
+            <CheckCircle2 className="w-3 h-3 text-[#E31E24]" />
+            CPRI Approved
+          </span>
           <a
             href={directionsUrl}
             target="_blank"
@@ -155,8 +94,8 @@ export default function LocationMap({
         </div>
       </div>
 
-      {/* Bottom-Right "GET DIRECTIONS IN GOOGLE MAPS" Button */}
-      <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-[1000]">
+      {/* 4. Bottom-Right "GET DIRECTIONS IN GOOGLE MAPS" Action Button */}
+      <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-30">
         <a
           href={directionsUrl}
           target="_blank"
