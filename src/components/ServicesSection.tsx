@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
+import Link from 'next/link';
+
 interface ServicesSectionProps {
   onSelectCategory?: (categoryId: string) => void;
 }
@@ -63,14 +65,11 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
   const handleExplore = () => {
     if (onSelectCategory) {
       onSelectCategory(activeService.id);
-    } else {
-      const el = document.getElementById('products');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section id="services" className="pt-14 sm:pt-16 lg:pt-20 pb-10 sm:pb-12 lg:pb-12 bg-white text-neutral-900 relative overflow-hidden">
+    <section id="products" className="pt-14 sm:pt-16 lg:pt-20 pb-10 sm:pb-12 lg:pb-12 bg-white text-neutral-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* =========================================================================
             TOP FEATURED AREA: Left Title, Center 3D Product Visual, Right Details
@@ -81,13 +80,13 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
             {/* Small Red Eyebrow */}
             <div className="flex items-center gap-2.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#E31E24]">
               <span className="w-6 h-0.5 bg-[#E31E24]" />
-              <span>OUR SERVICES</span>
+              <span>OUR PRODUCTS</span>
             </div>
 
             {/* Main Heading */}
             <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0f172a] leading-[1.12] tracking-tight font-sans">
-              Our Engineering <br />
-              <span className="text-[#E31E24]">Solutions</span>
+              Our Manufactured <br />
+              <span className="text-[#E31E24]">Products</span>
             </h2>
 
             {/* Supporting Subtext */}
@@ -97,13 +96,13 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
 
             {/* Primary Action Button */}
             <div className="pt-2">
-              <button
-                onClick={handleExplore}
+              <Link
+                href="/products"
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#E31E24] hover:bg-[#C9181E] text-white text-sm font-bold tracking-wide transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
               >
-                <span>Explore Our Services</span>
+                <span>Explore Our Products</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
             </div>
           </div>
 

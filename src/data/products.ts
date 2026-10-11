@@ -609,3 +609,74 @@ export const COMPANY_DETAILS = {
   materialsSupported: ['Aluminium', 'Copper', 'Brass', 'MS (HDGI)'],
   voltageClass: 'H.T. / L.T. / EHV Lines & Substations'
 };
+
+export const CATALOG_IMAGES: Record<number, string> = {
+  1: '/images/catalog_extracted/page_01_1428x1009.jpeg',
+  2: '/images/catalog_extracted/page_02_1428x1009.jpeg',
+  3: '/images/catalog_extracted/page_03_1428x1009.jpeg',
+  4: '/images/catalog_extracted/page_04_1428x1009.jpeg',
+  5: '/images/catalog_extracted/page_05_1428x1009.jpeg',
+  6: '/images/catalog_extracted/page_06_1428x1009.jpeg',
+  7: '/images/catalog_extracted/page_07_1428x1009.jpeg',
+  8: '/images/catalog_extracted/page_08_1428x1009.jpeg',
+  9: '/images/catalog_extracted/page_09_1428x1009.jpeg',
+  10: '/images/catalog_extracted/page_10_1428x1009.jpeg',
+  11: '/images/catalog_extracted/page_11_1428x1009.jpeg',
+  12: '/images/catalog_extracted/page_12_1307x923.jpeg',
+  13: '/images/catalog_extracted/page_13_1428x1009.jpeg',
+  14: '/images/catalog_extracted/page_14_1431x1105.jpeg',
+  15: '/images/catalog_extracted/page_15_1431x1105.jpeg',
+  16: '/images/catalog_extracted/page_16_1431x1104.jpeg',
+  17: '/images/catalog_extracted/page_17_1428x1009.jpeg',
+  18: '/images/catalog_extracted/page_18_1431x1104.jpeg',
+  19: '/images/catalog_extracted/page_19_1431x1104.jpeg',
+  20: '/images/catalog_extracted/page_20_1431x1104.jpeg',
+  21: '/images/catalog_extracted/page_21_1431x1105.jpeg',
+  22: '/images/catalog_extracted/page_22_1431x1104.jpeg',
+  23: '/images/catalog_extracted/page_23_1431x1104.jpeg',
+  24: '/images/catalog_extracted/page_24_1431x1104.jpeg',
+  25: '/images/catalog_extracted/page_25_1431x1104.jpeg',
+  26: '/images/catalog_extracted/page_26_1431x1104.jpeg',
+  27: '/images/catalog_extracted/page_27_1431x1104.jpeg',
+  28: '/images/catalog_extracted/page_28_1431x1104.jpeg',
+  29: '/images/catalog_extracted/page_29_1431x1104.jpeg',
+  30: '/images/catalog_extracted/page_30_970x1256.jpeg',
+  31: '/images/catalog_extracted/page_31_1431x1104.jpeg',
+  32: '/images/catalog_extracted/page_32_1431x1104.jpeg',
+  33: '/images/catalog_extracted/page_33_1428x1009.jpeg',
+  34: '/images/catalog_extracted/page_34_1428x1009.jpeg',
+  35: '/images/catalog_extracted/page_35_1467x1037.jpeg',
+  36: '/images/catalog_extracted/page_36_1542x1089.jpeg',
+  37: '/images/catalog_extracted/page_37_1458x1031.jpeg',
+  38: '/images/catalog_extracted/page_38_1516x1071.jpeg',
+  39: '/images/catalog_extracted/page_39_1458x1031.jpeg',
+  40: '/images/catalog_extracted/page_40_1565x1106.jpeg',
+};
+
+export interface ProductCategoryItem {
+  id: string;
+  label: string;
+}
+
+export const PRODUCT_CATEGORIES: ProductCategoryItem[] = [
+  { id: 'palm-connectors', label: 'Palm Connectors' },
+  { id: 'ct-connectors', label: 'CT Connectors' },
+  { id: 't-connectors', label: 'T-Connectors' },
+  { id: 'terminal-connectors', label: 'Terminal Connectors' },
+  { id: 'clamps-support', label: 'Clamps & Support Clamps' },
+  { id: 'spacers', label: 'Spacers' },
+  { id: 'other-hardware', label: 'Other Electrical Hardware' }
+];
+
+export function getProductCategory(specPage: number | undefined): string {
+  if (!specPage) return 'other-hardware';
+  if (specPage >= 1 && specPage <= 4) return 'palm-connectors';
+  if (specPage >= 5 && specPage <= 7) return 'ct-connectors';
+  if (specPage >= 11 && specPage <= 13) return 't-connectors';
+  if ([14, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31].includes(specPage)) return 'terminal-connectors';
+  if ([9, 10, 15, 16, 17, 30, 33, 34].includes(specPage)) return 'clamps-support';
+  if ([8, 32].includes(specPage)) return 'spacers';
+  if ([29, 35, 36, 37, 38, 39, 40].includes(specPage)) return 'other-hardware';
+  return 'other-hardware';
+}
+

@@ -58,7 +58,7 @@ export default function ExpertiseSection({ onExploreCategory }: ExpertiseSection
     if (onExploreCategory) {
       onExploreCategory(categoryId);
     }
-    const el = document.getElementById('services');
+    const el = document.getElementById('products');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }

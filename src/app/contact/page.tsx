@@ -74,7 +74,7 @@ export default function ContactPage() {
     }
 
     if (!formData.serviceRequirement) {
-      errors.serviceRequirement = 'Please select a service requirement';
+      errors.serviceRequirement = 'Please select a product requirement';
     }
 
     if (!formData.message.trim()) {
@@ -336,13 +336,13 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    {/* Row 3: Product / Service Requirement Dropdown */}
+                    {/* Row 3: Product Requirement Dropdown */}
                     <div>
                       <label
                         htmlFor="serviceRequirement"
                         className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5"
                       >
-                        PRODUCT OR SERVICE REQUIREMENT <span className="text-[#E31E24]">*</span>
+                        PRODUCT REQUIREMENT <span className="text-[#E31E24]">*</span>
                       </label>
                       <select
                         id="serviceRequirement"
@@ -356,7 +356,7 @@ export default function ContactPage() {
                         } text-slate-900 focus:bg-white focus:outline-none focus:ring-2 transition-all`}
                       >
                         <option value="" disabled>
-                          Select a Service
+                          Select a Product Category
                         </option>
                         {serviceOptions.map((option) => (
                           <option key={option} value={option}>

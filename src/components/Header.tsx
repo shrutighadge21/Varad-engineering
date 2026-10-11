@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import VaradLogo from './VaradLogo';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, Phone } from 'lucide-react';
+import { COMPANY_DETAILS } from '@/data/products';
 
 interface HeaderProps {
   onOpenEnquiry?: () => void;
@@ -39,7 +40,7 @@ export default function Header({ onOpenEnquiry, variant = 'white', activePage }:
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
-    { label: 'Services', href: '/#services' },
+    { label: 'Products', href: '/products' },
     { label: 'Gallery', href: '/gallery' },
     { label: 'Contact Us', href: '/contact' }
   ];
@@ -94,8 +95,8 @@ export default function Header({ onOpenEnquiry, variant = 'white', activePage }:
             })}
           </nav>
 
-          {/* Right CTA Button Only */}
-          <div className="hidden md:flex items-center">
+          {/* Right CTA Button & Phone Display */}
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
             <button
               onClick={onOpenEnquiry}
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#E31E24] hover:bg-[#C9181E] text-white text-[15px] font-bold tracking-wide transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
@@ -103,6 +104,17 @@ export default function Header({ onOpenEnquiry, variant = 'white', activePage }:
               <span>Get in Touch</span>
               <ArrowRight className="w-4 h-4" />
             </button>
+            <a
+              href={`tel:${COMPANY_DETAILS.phone.replace(/[^0-9]/g, '')}`}
+              className={`hidden xl:inline-flex items-center gap-2 text-[15px] font-semibold transition-colors ${
+                isTransparent || (variant === 'transparent' && scrolled)
+                  ? 'text-slate-200 hover:text-white'
+                  : 'text-neutral-800 hover:text-[#E31E24]'
+              }`}
+            >
+              <Phone className="w-4 h-4 text-[#E31E24]" />
+              <span>{COMPANY_DETAILS.displayPhone}</span>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}

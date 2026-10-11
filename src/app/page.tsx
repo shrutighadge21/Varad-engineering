@@ -22,9 +22,9 @@ export default function Home() {
   };
 
   const handleSelectCategory = () => {
-    const servicesEl = document.getElementById('services');
-    if (servicesEl) {
-      servicesEl.scrollIntoView({ behavior: 'smooth' });
+    const productsEl = document.getElementById('products');
+    if (productsEl) {
+      productsEl.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -39,7 +39,7 @@ export default function Home() {
       {/* 3. About Varad Engineering Section */}
       <AboutSection />
 
-      {/* 4. Our Services / Engineering Solutions */}
+      {/* 4. Our Products / Engineering Solutions */}
       <ServicesSection onSelectCategory={handleSelectCategory} />
 
       {/* 5. Areas of Expertise (Connected Radial Ecosystem) */}

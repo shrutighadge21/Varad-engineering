@@ -22,18 +22,18 @@ export default function Footer() {
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
-    { label: 'Services', href: '/#services' },
+    { label: 'Products', href: '/products' },
     { label: 'Areas of Expertise', href: '/#expertise' },
     { label: 'Gallery', href: '/gallery' },
     { label: 'Contact Us', href: '/contact' }
   ];
 
-  const serviceLinks = [
-    { label: 'Connectors & Clamps', href: '/#services' },
-    { label: 'Substation Hardware', href: '/#services' },
-    { label: 'Transmission Line Hardware', href: '/#services' },
-    { label: 'Custom Engineering Solutions', href: '/#services' },
-    { label: 'Quality & Testing', href: '/about' }
+  const productLinks = [
+    { label: 'Palm Connectors', href: '/products' },
+    { label: 'CT & T-Connectors', href: '/products' },
+    { label: 'Terminal Connectors', href: '/products' },
+    { label: 'Clamps & Support Systems', href: '/products' },
+    { label: 'Spacers & Hardware', href: '/products' }
   ];
 
   return (
@@ -74,10 +74,10 @@ export default function Footer() {
               Manufacturing precision-engineered electrical connectors, clamps, and custom-built solutions for a stronger, more reliable power infrastructure.
             </p>
 
-            {/* CPRI Credibility Badge */}
+            {/* Credibility Badge */}
             <div className="pt-1 flex items-center gap-2 text-xs text-slate-300">
               <ShieldCheck className="w-4 h-4 text-[#E31E24] flex-shrink-0" />
-              <span>Tested &amp; Approved by <strong>C.P.R.I., Bangalore</strong></span>
+              <span>Tested &amp; Approved by <strong>NAPI and C.P.R.I. Bangalore</strong></span>
             </div>
 
             {/* Social Media Row: WhatsApp Only */}
@@ -120,14 +120,14 @@ export default function Footer() {
           </div>
 
           {/* =========================================================================
-              COLUMN 3: OUR SERVICES (~1.0fr)
+              COLUMN 3: OUR PRODUCTS (~1.0fr)
              ========================================================================= */}
           <div className="min-w-0 space-y-3.5 lg:px-8 xl:px-10 lg:border-r border-slate-800/70">
             <h4 className="text-sm font-bold tracking-wider text-white font-sans uppercase">
-              Our Services
+              Our Products
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-[13px] text-slate-400">
-              {serviceLinks.map((item) => (
+              {productLinks.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
