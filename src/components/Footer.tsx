@@ -23,7 +23,6 @@ export default function Footer() {
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
     { label: 'Products', href: '/products' },
-    { label: 'Areas of Expertise', href: '/#expertise' },
     { label: 'Gallery', href: '/gallery' },
     { label: 'Contact Us', href: '/contact' }
   ];
@@ -44,6 +43,7 @@ export default function Footer() {
           src="/images/impact/impact-01-transmission.jpg"
           alt=""
           fill
+          sizes="420px"
           className="object-contain object-right-bottom filter invert grayscale"
           aria-hidden="true"
         />

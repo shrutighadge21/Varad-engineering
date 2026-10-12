@@ -14,42 +14,42 @@ export default function ExpertiseSection({ onExploreCategory }: ExpertiseSection
       id: 'connectors',
       title: 'Electrical Connectors',
       shortTitle: 'Electrical Connectors',
-      image: '/images/expertise/node-1-connectors.png',
+      image: '/images/catalogue/expertise-01-connectors.png',
       alt: 'Varad Engineering Electrical Connectors'
     },
     {
       id: 'suspension-tension',
       title: 'Suspension & Tension Hardware',
       shortTitle: 'Suspension & Tension Hardware',
-      image: '/images/expertise/node-4-suspension.png',
+      image: '/images/catalogue/expertise-04-suspension.png',
       alt: 'Varad Engineering Suspension & Tension Hardware'
     },
     {
       id: 'clamps',
       title: 'Clamps & Support Systems',
       shortTitle: 'Clamps & Support Systems',
-      image: '/images/expertise/node-2-clamps.png',
+      image: '/images/catalogue/expertise-02-clamps.png',
       alt: 'Varad Engineering Clamps & Support Systems'
     },
     {
       id: 'earthing',
       title: 'Earthing Components',
       shortTitle: 'Earthing Components',
-      image: '/images/expertise/node-5-earthing.png',
+      image: '/images/catalogue/expertise-05-earthing.png',
       alt: 'Varad Engineering Earthing Components'
     },
     {
       id: 'terminals',
       title: 'Terminal Connections & Equipment Hardware',
       shortTitle: 'Terminal Connections & Equipment Hardware',
-      image: '/images/expertise/node-3-terminals.png',
+      image: '/images/catalogue/expertise-03-terminals.png',
       alt: 'Varad Engineering Terminal Connections & Equipment Hardware'
     },
     {
       id: 'custom',
       title: 'Custom Engineering Solutions',
       shortTitle: 'Custom Engineering Solutions',
-      image: '/images/expertise/node-6-custom.png',
+      image: '/images/catalogue/expertise-06-custom.png',
       alt: 'Varad Engineering Custom Engineering Solutions'
     }
   ];
@@ -250,7 +250,7 @@ export default function ExpertiseSection({ onExploreCategory }: ExpertiseSection
                 </div>
                 <div className="w-20 h-20 lg:w-[90px] lg:h-[90px] rounded-full bg-white border border-neutral-200/90 group-hover:border-[#E31E24] shadow-sm group-hover:shadow-md transition-all duration-300 flex items-center justify-center p-2.5 transform group-hover:scale-105">
                   <Image
-                    src="/images/expertise/node-1-connectors.png"
+                    src="/images/catalogue/expertise-01-connectors.png"
                     alt="Electrical Connectors"
                     width={85}
                     height={85}
@@ -266,7 +266,7 @@ export default function ExpertiseSection({ onExploreCategory }: ExpertiseSection
               >
                 <div className="w-20 h-20 lg:w-[90px] lg:h-[90px] rounded-full bg-white border border-neutral-200/90 group-hover:border-[#E31E24] shadow-sm group-hover:shadow-md transition-all duration-300 flex items-center justify-center p-2.5 transform group-hover:scale-105">
                   <Image
-                    src="/images/expertise/node-4-suspension.png"
+                    src="/images/catalogue/expertise-04-suspension.png"
                     alt="Suspension & Tension Hardware"
                     width={85}
                     height={85}
@@ -300,7 +300,7 @@ export default function ExpertiseSection({ onExploreCategory }: ExpertiseSection
                 </div>
                 <div className="w-20 h-20 lg:w-[90px] lg:h-[90px] rounded-full bg-white border border-neutral-200/90 group-hover:border-[#E31E24] shadow-sm group-hover:shadow-md transition-all duration-300 flex items-center justify-center p-2.5 transform group-hover:scale-105">
                   <Image
-                    src="/images/expertise/node-2-clamps.png"
+                    src="/images/catalogue/expertise-02-clamps.png"
                     alt="Clamps & Support Systems"
                     width={85}
                     height={85}
@@ -316,7 +316,7 @@ export default function ExpertiseSection({ onExploreCategory }: ExpertiseSection
               >
                 <div className="w-20 h-20 lg:w-[90px] lg:h-[90px] rounded-full bg-white border border-neutral-200/90 group-hover:border-[#E31E24] shadow-sm group-hover:shadow-md transition-all duration-300 flex items-center justify-center p-2.5 transform group-hover:scale-105">
                   <Image
-                    src="/images/expertise/node-5-earthing.png"
+                    src="/images/catalogue/expertise-05-earthing.png"
                     alt="Earthing Components"
                     width={85}
                     height={85}
@@ -350,7 +350,7 @@ export default function ExpertiseSection({ onExploreCategory }: ExpertiseSection
                 </div>
                 <div className="w-20 h-20 lg:w-[90px] lg:h-[90px] rounded-full bg-white border border-neutral-200/90 group-hover:border-[#E31E24] shadow-sm group-hover:shadow-md transition-all duration-300 flex items-center justify-center p-2.5 transform group-hover:scale-105">
                   <Image
-                    src="/images/expertise/node-3-terminals.png"
+                    src="/images/catalogue/expertise-03-terminals.png"
                     alt="Terminal Connections & Equipment Hardware"
                     width={85}
                     height={85}
@@ -366,7 +366,7 @@ export default function ExpertiseSection({ onExploreCategory }: ExpertiseSection
               >
                 <div className="w-20 h-20 lg:w-[90px] lg:h-[90px] rounded-full bg-white border border-neutral-200/90 group-hover:border-[#E31E24] shadow-sm group-hover:shadow-md transition-all duration-300 flex items-center justify-center p-2.5 transform group-hover:scale-105">
                   <Image
-                    src="/images/expertise/node-6-custom.png"
+                    src="/images/catalogue/expertise-06-custom.png"
                     alt="Custom Engineering Solutions"
                     width={85}
                     height={85}

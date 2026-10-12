@@ -17,8 +17,8 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
       number: '01',
       title: 'Electrical Connectors',
       description: 'Palm connectors, C.T. connectors, T connectors and more for reliable electrical transmission.',
-      featuredImage: '/images/services/hardware-01-connectors.png',
-      thumbnail: '/images/services/thumb-01-connectors.png',
+      featuredImage: '/images/catalogue/catalogue-01-connectors.png',
+      thumbnail: '/images/catalogue/thumb-01-connectors.png',
       alt: 'Varad Engineering Palm Connectors and Electrical Connectors'
     },
     {
@@ -26,8 +26,8 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
       number: '02',
       title: 'Clamps & Support Systems',
       description: 'BPI support clamps, bus post clamps, and angular clamps for substation busbar retention.',
-      featuredImage: '/images/services/hardware-02-clamps.png',
-      thumbnail: '/images/services/thumb-02-clamps.png',
+      featuredImage: '/images/catalogue/catalogue-02-clamps.png',
+      thumbnail: '/images/catalogue/thumb-02-clamps.png',
       alt: 'Varad Engineering BPI Support Clamps and Clamping Systems'
     },
     {
@@ -35,8 +35,8 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
       number: '03',
       title: 'Terminal & Equipment Connections',
       description: 'Rigid and expansion terminal connectors linking 4" IPS aluminium tubes to CT, CVT and switchgear.',
-      featuredImage: '/images/services/hardware-03-terminals.png',
-      thumbnail: '/images/services/thumb-03-terminals.png',
+      featuredImage: '/images/catalogue/catalogue-03-terminals.png',
+      thumbnail: '/images/catalogue/thumb-03-terminals.png',
       alt: 'Varad Engineering IPS Tube Terminal Connectors and Equipment Terminals'
     },
     {
@@ -44,8 +44,8 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
       number: '04',
       title: 'Suspension, Tension & Earthing Hardware',
       description: 'Suspension hardware strings, dead-end tension assemblies, spacers and flexible earthing bonds.',
-      featuredImage: '/images/services/hardware-04-suspension.png',
-      thumbnail: '/images/services/thumb-04-suspension.png',
+      featuredImage: '/images/catalogue/catalogue-04-suspension.png',
+      thumbnail: '/images/catalogue/thumb-04-suspension.png',
       alt: 'Varad Engineering Suspension and Tension String Hardware Assemblies'
     },
     {
@@ -53,8 +53,8 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
       number: '05',
       title: 'Custom Engineering Solutions',
       description: 'Custom-built connectors, U-type breaker plates, and bespoke hardware fabricated as per client specifications.',
-      featuredImage: '/images/services/hardware-05-custom.png',
-      thumbnail: '/images/services/thumb-05-custom.png',
+      featuredImage: '/images/catalogue/catalogue-05-custom.png',
+      thumbnail: '/images/catalogue/thumb-05-custom.png',
       alt: 'Varad Engineering Custom Tooling and Fabricated Engineering Products'
     }
   ];

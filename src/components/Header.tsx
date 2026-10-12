@@ -95,18 +95,11 @@ export default function Header({ onOpenEnquiry, variant = 'white', activePage }:
             })}
           </nav>
 
-          {/* Right CTA Button & Phone Display */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-6">
-            <button
-              onClick={onOpenEnquiry}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#E31E24] hover:bg-[#C9181E] text-white text-[15px] font-bold tracking-wide transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
-            >
-              <span>Get in Touch</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+          {/* Right Phone Display */}
+          <div className="hidden md:flex items-center">
             <a
               href={`tel:${COMPANY_DETAILS.phone.replace(/[^0-9]/g, '')}`}
-              className={`hidden xl:inline-flex items-center gap-2 text-[15px] font-semibold transition-colors ${
+              className={`inline-flex items-center gap-2 text-[15px] font-semibold transition-colors ${
                 isTransparent || (variant === 'transparent' && scrolled)
                   ? 'text-slate-200 hover:text-white'
                   : 'text-neutral-800 hover:text-[#E31E24]'

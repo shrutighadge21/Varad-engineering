@@ -3,7 +3,7 @@
 import React, { useState, useMemo, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EnquiryModal from '@/components/EnquiryModal';
@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 
 function ProductsExplorer() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const initialCategoryParam = searchParams.get('category');
   const initialProductParam = searchParams.get('product');
@@ -116,8 +117,12 @@ function ProductsExplorer() {
   };
 
   const handleOpenEnquiry = (prodName?: string) => {
-    setEnquiryProductName(prodName || selectedProduct?.name);
-    setIsEnquiryOpen(true);
+    const targetProduct = prodName || selectedProduct?.name;
+    if (targetProduct) {
+      router.push(`/contact?product=${encodeURIComponent(targetProduct)}#contact-form`);
+    } else {
+      router.push('/contact#contact-form');
+    }
   };
 
   // Helper to get product image source
@@ -440,13 +445,13 @@ function ProductsExplorer() {
 
                     {/* Red Enquire Now Button */}
                     <div className="pt-6">
-                      <button
-                        onClick={() => handleOpenEnquiry(selectedProduct.name)}
+                      <Link
+                        href={`/contact?product=${encodeURIComponent(selectedProduct.name)}#contact-form`}
                         className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-lg bg-[#E31E24] hover:bg-[#C9181E] text-white text-sm sm:text-base font-bold tracking-wide transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
                       >
                         <span>Enquire Now</span>
                         <ArrowRight className="w-4 h-4" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

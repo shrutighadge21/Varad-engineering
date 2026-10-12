@@ -1,11 +1,97 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Factory, Users, ShieldCheck } from 'lucide-react';
 
 export default function AboutSection() {
+  const statsRef = useRef<HTMLDivElement>(null);
+  const hasAnimatedRef = useRef(false);
+  const [year, setYear] = useState(1);
+  const [experience, setExperience] = useState(1);
+
+  useEffect(() => {
+    if (hasAnimatedRef.current) return;
+
+    // Respect reduced-motion accessibility preferences immediately
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setYear(2003);
+      setExperience(23);
+      hasAnimatedRef.current = true;
+      return;
+    }
+
+    const element = statsRef.current;
+    if (!element) return;
+
+    let rafId: number;
+
+    const startAnimation = () => {
+      const duration = 1800; // ~1.8 seconds (smooth, professional 1.5–2s range)
+      const startYear = 1;
+      const targetYear = 2003;
+      const startExp = 1;
+      const targetExp = 23;
+      let startTime: number | null = null;
+
+      const step = (timestamp: number) => {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Smooth ease-out cubic curve
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+
+        const currentYear = Math.round(startYear + (targetYear - startYear) * easeOut);
+        const currentExp = Math.round(startExp + (targetExp - startExp) * easeOut);
+
+        setYear(currentYear);
+        setExperience(currentExp);
+
+        if (progress < 1) {
+          rafId = requestAnimationFrame(step);
+        } else {
+          setYear(targetYear);
+          setExperience(targetExp);
+        }
+      };
+
+      rafId = requestAnimationFrame(step);
+    };
+
+    if (typeof IntersectionObserver === 'undefined') {
+      startAnimation();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasAnimatedRef.current) {
+          hasAnimatedRef.current = true;
+          observer.disconnect();
+          startAnimation();
+        }
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }, []);
   return (
     <section id="about" className="relative py-14 lg:py-20 bg-white text-neutral-900 overflow-hidden border-t border-neutral-100">
       {/* Subtle Background Architectural Grid / Transmission Watermark */}
@@ -124,17 +210,20 @@ export default function AboutSection() {
         </div>
 
         {/* =========================================================================
-            BOTTOM ROW: 3 Authentic Credibility Stats (2003, 23+ Years, CPRI)
+            BOTTOM ROW: 3 Authentic Credibility Stats (2003, 23+ Years, NAPI & CPRI)
            ========================================================================= */}
-        <div className="mt-10 lg:mt-14 pt-6 lg:pt-8 border-t border-neutral-200/80 grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-4xl">
+        <div
+          ref={statsRef}
+          className="mt-10 lg:mt-14 pt-6 lg:pt-8 border-t border-neutral-200/80 grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-4xl"
+        >
           {/* Stat 1: Established 2003 */}
           <div className="flex items-center gap-3.5">
             <div className="w-11 h-11 rounded-lg bg-red-50 text-[#E31E24] flex items-center justify-center flex-shrink-0">
               <Factory className="w-5 h-5" />
             </div>
             <div>
-              <span className="block text-xl sm:text-2xl font-black text-[#0f172a] font-sans leading-none tracking-tight">
-                2003
+              <span className="block text-xl sm:text-2xl font-black text-[#0f172a] font-sans tabular-nums leading-none tracking-tight">
+                {year}
               </span>
               <span className="block text-[11px] font-bold text-neutral-500 uppercase tracking-wider mt-1">
                 ESTABLISHED
@@ -148,8 +237,8 @@ export default function AboutSection() {
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <span className="block text-xl sm:text-2xl font-black text-[#0f172a] font-sans leading-none tracking-tight">
-                23+ YEARS
+              <span className="block text-xl sm:text-2xl font-black text-[#0f172a] font-sans tabular-nums leading-none tracking-tight">
+                {experience}+ YEARS
               </span>
               <span className="block text-[11px] font-bold text-neutral-500 uppercase tracking-wider mt-1">
                 MANUFACTURING EXPERIENCE
@@ -157,14 +246,14 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Stat 3: CPRI Tested & Approved */}
+          {/* Stat 3: NAPI & CPRI Tested & Approved */}
           <div className="flex items-center gap-3.5">
             <div className="w-11 h-11 rounded-lg bg-red-50 text-[#E31E24] flex items-center justify-center flex-shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <span className="block text-xl sm:text-2xl font-black text-[#0f172a] font-sans leading-none tracking-tight">
-                CPRI
+                NAPI &amp; CPRI
               </span>
               <span className="block text-[11px] font-bold text-neutral-500 uppercase tracking-wider mt-1">
                 TESTED &amp; APPROVED
