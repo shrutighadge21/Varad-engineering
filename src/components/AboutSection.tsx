@@ -144,8 +144,8 @@ export default function AboutSection() {
           </div>
 
           {/* Right Column: 3-Panel Slanted Parallelogram Collage with Red Accents (~55% width) */}
-          <div className="lg:col-span-7 w-full flex items-center justify-center pt-4 lg:pt-0">
-            <div className="relative flex items-center justify-center gap-3 sm:gap-4.5 w-full max-w-[620px] lg:max-w-none">
+          <div className="lg:col-span-7 w-full flex items-center justify-center pt-4 lg:pt-0 overflow-hidden">
+            <div className="relative flex items-center justify-center gap-2 sm:gap-4.5 w-full max-w-[620px] lg:max-w-none">
               {/* -------------------------------------------------------------
                   Panel 1: Precision Electrical Connector (Left)
                  ------------------------------------------------------------- */}

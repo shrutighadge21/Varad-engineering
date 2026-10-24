@@ -49,8 +49,8 @@ export default function Footer() {
         />
       </div>
 
-      {/* Main Footer Container (1.35fr | 0.8fr | 1.0fr | 1.3fr with 70–90px Vertical Padding) */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-16 py-16 lg:py-20">
+      {/* Main Footer Container */}
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-10 lg:px-14 xl:px-16 py-12 sm:py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_1fr_1.3fr] gap-8 md:gap-10 lg:gap-0 items-start">
           {/* =========================================================================
               COLUMN 1: BRANDING & CREDIBILITY (~1.35fr)

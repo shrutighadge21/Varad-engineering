@@ -191,10 +191,10 @@ function ProductsExplorer() {
         </div>
       </section>
 
-      {/* 3. Horizontal Product Category Tabs */}
+      {/* 3. Product Category Navigation: 3-column grid on mobile, horizontal flex on desktop */}
       <section className="bg-white border-b border-slate-200 sticky top-[69px] z-30 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
-          <div className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto pb-1 scrollbar-none snap-x">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+          <div className="grid grid-cols-3 gap-2 sm:gap-2.5 md:flex md:flex-wrap md:items-center md:gap-2.5">
             {PRODUCT_CATEGORIES.map((category) => {
               const isSelected = activeCategoryId === category.id;
               const count = categoryCounts[category.id] ?? 0;
@@ -202,15 +202,17 @@ function ProductsExplorer() {
                 <button
                   key={category.id}
                   onClick={() => handleCategorySelect(category.id)}
-                  className={`snap-start whitespace-nowrap px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer flex-shrink-0 select-none ${
+                  className={`min-h-[52px] sm:min-h-[56px] md:min-h-0 md:w-auto px-2 py-2 sm:px-3 sm:py-2.5 md:px-4.5 md:py-2.5 rounded-lg text-center flex flex-col md:flex-row items-center justify-center transition-all duration-200 cursor-pointer select-none ${
                     isSelected
                       ? 'bg-[#E31E24] text-white shadow-sm ring-1 ring-[#E31E24]'
                       : 'bg-white text-[#0B192C] border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                   }`}
                   aria-pressed={isSelected}
                 >
-                  <span>{category.label}</span>
-                  <span className={`ml-1.5 font-normal text-xs ${isSelected ? 'text-white/90' : 'text-slate-500'}`}>
+                  <span className="text-[11px] sm:text-xs md:text-sm font-bold leading-tight text-center break-words line-clamp-2 md:line-clamp-none md:whitespace-nowrap">
+                    {category.label}
+                  </span>
+                  <span className={`text-[10px] sm:text-xs font-normal mt-0.5 md:mt-0 md:ml-1.5 ${isSelected ? 'text-white/90' : 'text-slate-500'}`}>
                     ({count})
                   </span>
                 </button>
@@ -221,7 +223,7 @@ function ProductsExplorer() {
       </section>
 
       {/* 4. Main Product Explorer: Two-Column Product Explorer matching reference image */}
-      <main className="flex-1 py-8 sm:py-10 lg:py-12">
+      <main className="flex-1 py-6 sm:py-10 lg:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
             
@@ -230,15 +232,15 @@ function ProductsExplorer() {
                ========================================================================= */}
             <div className="lg:col-span-4 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
               {/* Dark Navy Header displaying selected category name with grid icon */}
-              <div className="bg-[#0B192C] text-white px-5 py-4 flex items-center gap-3">
+              <div className="bg-[#0B192C] text-white px-4 sm:px-5 py-3.5 sm:py-4 flex items-center gap-3">
                 <LayoutGrid className="w-5 h-5 text-white flex-shrink-0" />
-                <h2 className="text-base font-bold tracking-wide text-white truncate font-sans">
+                <h2 className="text-sm sm:text-base font-bold tracking-wide text-white truncate font-sans">
                   {activeCategory.label}
                 </h2>
               </div>
 
               {/* Scrollable list of category products */}
-              <div className="max-h-[580px] lg:max-h-[640px] overflow-y-auto divide-y divide-slate-100">
+              <div className="max-h-[360px] sm:max-h-[480px] lg:max-h-[640px] overflow-y-auto divide-y divide-slate-100">
                 {activeCategoryProducts.length > 0 ? (
                   activeCategoryProducts.map((product) => {
                     const isSelected = selectedProduct?.id === product.id;
@@ -308,9 +310,9 @@ function ProductsExplorer() {
             {/* =========================================================================
                 RIGHT PANEL: Product Details Card (65% on Desktop)
                ========================================================================= */}
-            <div className="lg:col-span-8 bg-white rounded-xl border border-slate-200 shadow-sm p-6 sm:p-8 lg:p-10">
+            <div className="lg:col-span-8 bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-8 lg:p-10">
               {selectedProduct ? (
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
                   
                   {/* Left Side of Detail: Large Image Viewer & Thumbnails */}
                   <div className="md:col-span-6 space-y-4">

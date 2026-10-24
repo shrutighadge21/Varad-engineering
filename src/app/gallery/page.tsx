@@ -269,10 +269,10 @@ export default function GalleryPage() {
         </section>
 
         {/* =========================================================================
-            4. CLEAN & COMPACT PRODUCT IMAGE GRID
+            4. CLEAN & COMPACT PRODUCT IMAGE GRID (2 cols on mobile, 3 on tablet, 4 on desktop)
            ========================================================================= */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 pb-16 sm:pb-20 lg:pb-24">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-12 pb-14 sm:pb-20 lg:pb-24">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
             {filteredProducts.map((product) => {
               const imageSrc =
                 CATALOG_IMAGES[product.specPage || 1] || '/images/slide-products.jpg';
@@ -292,21 +292,21 @@ export default function GalleryPage() {
                   }}
                   aria-label={`Inspect ${product.name}`}
                 >
-                  {/* Card Viewport for Image (Compact 4:3 Aspect Ratio) */}
-                  <div className="relative w-full aspect-[4/3] bg-[#f8fafc] flex items-center justify-center overflow-hidden p-3 select-none">
+                  {/* Card Viewport for Image (Consistent 4:3 Aspect Ratio) */}
+                  <div className="relative w-full aspect-[4/3] bg-[#f8fafc] flex items-center justify-center overflow-hidden p-2 sm:p-3 select-none">
                     {/* Product Image */}
                     <div className="relative w-full h-full flex items-center justify-center">
                       <Image
                         src={imageSrc}
                         alt={product.name}
                         fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-contain p-2 group-hover:scale-105 transition-transform duration-300 ease-out"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        className="object-contain p-1.5 sm:p-2 group-hover:scale-105 transition-transform duration-300 ease-out"
                       />
                     </div>
 
                     {/* Smooth Red Hover Overlay Panel Across Lower Portion (Desktop Hover, 250ms transition) */}
-                    <div className="absolute bottom-0 inset-x-0 h-[40%] min-h-[48px] bg-gradient-to-t from-[#B91C1C]/95 via-[#DC2626]/90 to-[#E31E24]/85 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-250 ease-out flex items-center px-4 z-10 pointer-events-none">
+                    <div className="absolute bottom-0 inset-x-0 h-[40%] min-h-[48px] bg-gradient-to-t from-[#B91C1C]/95 via-[#DC2626]/90 to-[#E31E24]/85 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-250 ease-out flex items-center px-4 z-10 pointer-events-none hidden sm:flex">
                       <div className="flex items-center justify-between w-full gap-2 min-w-0">
                         {/* Correct Product Name on Left */}
                         <span className="text-white text-xs sm:text-[13px] font-bold leading-tight line-clamp-2 min-w-0 font-sans">
@@ -320,10 +320,10 @@ export default function GalleryPage() {
                     </div>
                   </div>
 
-                  {/* Clean & Compact Bottom Bar with "Inspect ↗" Option (Accessible Name on Mobile) */}
-                  <div className="px-4 py-2.5 bg-white border-t border-slate-100 flex items-center justify-between sm:justify-end">
+                  {/* Clean & Compact Bottom Bar with "Inspect ↗" Option */}
+                  <div className="px-2.5 py-2 sm:px-4 sm:py-2.5 bg-white border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2">
                     {/* On touchscreens without hover, keep product name accessible */}
-                    <span className="text-xs font-semibold text-slate-800 truncate pr-2 sm:hidden">
+                    <span className="text-[11px] sm:text-xs font-semibold text-slate-800 line-clamp-1 w-full sm:hidden">
                       {product.name}
                     </span>
                     <button
@@ -332,7 +332,7 @@ export default function GalleryPage() {
                         e.stopPropagation();
                         setSelectedProduct(product);
                       }}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-[#E31E24] hover:text-[#B91C1C] group-hover:translate-x-0.5 transition-all cursor-pointer flex-shrink-0"
+                      className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#E31E24] hover:text-[#B91C1C] group-hover:translate-x-0.5 transition-all cursor-pointer flex-shrink-0 self-end sm:self-auto"
                     >
                       Inspect ↗
                     </button>

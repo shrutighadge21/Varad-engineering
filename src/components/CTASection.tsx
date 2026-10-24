@@ -37,31 +37,31 @@ export default function CTASection({ onOpenEnquiry }: CTASectionProps) {
           />
         </div>
 
-        {/* Content Container (Left-Aligned, Clean & Spacious with 6–8% Padding) */}
-        <div className="relative z-10 px-6 sm:px-10 lg:px-14 xl:px-16 py-12 sm:py-14 lg:py-16 max-w-xl lg:max-w-2xl">
+        {/* Content Container (Left-Aligned, Clean & Spacious with balanced mobile padding) */}
+        <div className="relative z-10 px-4 sm:px-8 lg:px-14 xl:px-16 py-10 sm:py-14 lg:py-16 max-w-xl lg:max-w-2xl">
           {/* Eyebrow with Leading Red Accent Line */}
-          <div className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0f172a] mb-3">
-            <span className="w-7 sm:w-8 h-[2px] bg-[#E31E24]" />
+          <div className="inline-flex items-center gap-2 sm:gap-2.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0f172a] mb-2.5 sm:mb-3">
+            <span className="w-6 sm:w-8 h-[2px] bg-[#E31E24]" />
             <span>LET'S BUILD A STRONGER TOMORROW</span>
           </div>
 
           {/* Main Headline */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black leading-[1.12] tracking-tight font-sans text-[#0f172a]">
+          <h2 className="text-2xl sm:text-4xl lg:text-[44px] font-black leading-[1.15] sm:leading-[1.12] tracking-tight font-sans text-[#0f172a]">
             Ready to Power <br />
             <span className="text-[#E31E24]">Your Next Project?</span>
           </h2>
 
           {/* Supporting Paragraph */}
-          <p className="mt-3.5 text-sm sm:text-base text-neutral-600 leading-relaxed font-normal max-w-lg">
+          <p className="mt-3 text-xs sm:text-base text-neutral-600 leading-relaxed font-normal max-w-lg">
             Partner with Varad Engineering for high-quality electrical connectors, substation hardware and custom engineering solutions.
           </p>
 
           {/* Action Buttons */}
-          <div className="mt-6 sm:mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="mt-5 sm:mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
             {/* Primary Button */}
             <button
               onClick={onOpenEnquiry}
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-lg bg-[#E31E24] hover:bg-[#C9181E] text-white font-bold text-sm tracking-wide shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-lg bg-[#E31E24] hover:bg-[#C9181E] text-white font-bold text-sm tracking-wide shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer w-full sm:w-auto"
             >
               <span>Get in Touch</span>
               <ArrowRight className="w-4 h-4" />
@@ -70,7 +70,7 @@ export default function CTASection({ onOpenEnquiry }: CTASectionProps) {
             {/* Secondary Button */}
             <button
               onClick={onOpenEnquiry}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-white/95 hover:bg-neutral-50 text-[#0f172a] font-bold text-sm border-2 border-[#0f172a]/80 hover:border-[#0f172a] shadow-xs transition-all active:scale-95 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-lg bg-white/95 hover:bg-neutral-50 text-[#0f172a] font-bold text-sm border-2 border-[#0f172a]/80 hover:border-[#0f172a] shadow-xs transition-all active:scale-95 cursor-pointer w-full sm:w-auto"
             >
               <span>Discuss Your Requirements</span>
               <ArrowRight className="w-4 h-4" />
