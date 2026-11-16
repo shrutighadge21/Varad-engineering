@@ -1,15 +1,18 @@
 export interface Product {
   id: string;
   name: string;
-  category: 'connectors' | 'clamps' | 'terminals' | 'suspension-tension' | 'earthing' | 'custom';
+  categoryId: string;
   categoryLabel: string;
+  category: 'connectors' | 'clamps' | 'terminals' | 'suspension-tension' | 'earthing' | 'custom' | string;
   material: string;
   conductorRange?: string;
   description: string;
   application: string;
   image?: string;
+  gallery?: string[];
   specPage?: number;
   featured?: boolean;
+  subGroup?: string;
 }
 
 export interface CategoryInfo {
@@ -86,500 +89,1097 @@ export const CATEGORIES: CategoryInfo[] = [
   }
 ];
 
+export interface ProductCategoryItem {
+  id: string;
+  label: string;
+}
+
+export const PRODUCT_CATEGORIES: ProductCategoryItem[] = [
+  { id: 'substation-clamps-connectors', label: 'Substation Clamps & Connectors' },
+  { id: 'substation-hardware', label: 'Substation Hardware' },
+  { id: 'earthwire-hardware', label: 'Earthwire Hardware' },
+  { id: 'bimetallic-sheets-sleeves', label: 'Bimetallic Sheets & Sleeves' },
+  { id: 'transmission-line-hardware', label: 'Transmission Line Hardware' },
+  { id: 'clamps-connectors-400kv-above', label: 'Clamps & Connectors for 400 kV and Above' }
+];
+
 export const PRODUCTS: Product[] = [
-  // 1. PALM CONNECTORS
+  // =========================================================================
+  // 1. Substation Clamps & Connectors
+  // =========================================================================
   {
-    id: 'palm-80x80x16',
-    name: '80X80X16MM Palm Connector',
+    id: 'palm-80x80',
+    name: '80 × 80 Palm Connector',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
     category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
     material: 'Aluminium',
     conductorRange: 'DOG, PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: 'High-conductivity aluminium palm connector with 4-hole mounting pad for heavy-duty electrical conductor terminations.',
+    description: 'High-conductivity aluminium 80 × 80 mm palm connector with 4-hole mounting pad for heavy-duty electrical conductor terminations.',
     application: 'Substation conductor termination to equipment terminal palms (H.T. / EHV).',
+    image: '/images/products/substation-clamps/80-80-12.png',
     specPage: 1,
     featured: true
   },
   {
-    id: 'palm-100x100x16',
-    name: '100X100X16MM Palm Connector',
+    id: 'palm-100x100-12',
+    name: '100 × 100 Palm Connector',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
     category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
     material: 'Aluminium',
     conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: 'Heavy-gauge aluminium 4-hole palm connector designed for medium-to-large cross-section ACSR conductors.',
+    description: 'Heavy-gauge aluminium 4-hole palm connector (100 × 100 mm) designed for medium-to-large cross-section ACSR conductors.',
     application: 'Switchyard busbar and transformer terminal connections.',
+    image: '/images/products/substation-clamps/100-100-12.png',
+    gallery: [
+      '/images/products/substation-clamps/100-100-12.png',
+      '/images/products/substation-clamps/100-100-20.png'
+    ],
     specPage: 2,
     featured: false
   },
   {
-    id: 'palm-100x100x22',
-    name: '100X100X22MM Palm Connector',
+    id: 'palm-100x100-20',
+    name: '100 × 100 Palm Connector (20mm Pad)',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
     category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
     material: 'Aluminium',
     conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: 'High-ampacity 22mm thick palm connector for high thermal and fault current handling.',
+    description: 'High-ampacity 20mm thick palm connector (100 × 100 mm) for high thermal and fault current handling.',
     application: 'High-current transmission and EHV substation terminal interfaces.',
+    image: '/images/products/substation-clamps/100-100-20.png',
     specPage: 3,
     featured: false
   },
   {
-    id: 'palm-125x120x22-9hole',
-    name: '125X120X22 MM Palm Connector (9 Hole)',
+    id: 'palm-125x125',
+    name: '125 × 125 Palm Connector',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
     category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
     material: 'Aluminium',
     conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: 'Heavy-duty 9-hole NEMA palm connector providing ultra-low contact resistance for maximum power transfer.',
+    description: 'Heavy-duty 125 × 125 mm palm connector providing ultra-low contact resistance for maximum power transfer.',
     application: 'Large power transformer bushings and high-capacity circuit breaker terminals.',
+    image: '/images/products/substation-clamps/125-125-20.png',
     specPage: 4,
     featured: true
   },
-
-  // 2. CT CONNECTORS
+  {
+    id: 'pg-clamp',
+    name: 'PG Clamp',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
+    category: 'connectors',
+    material: 'Aluminium',
+    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
+    description: 'Extruded parallel groove clamp with high-tensile hot-dip galvanized steel bolts for non-tension jumper loops and tap connections.',
+    application: 'Tension tower jumper loops and electrical tap connections.',
+    image: '/images/products/substation-clamps/pg_clamp.png',
+    specPage: 34,
+    featured: false
+  },
+  {
+    id: 'substation-spacer',
+    name: 'Spacer',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
+    category: 'suspension-tension',
+    material: 'Aluminium',
+    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
+    description: 'Twin conductor spacer maintaining uniform sub-conductor spacing along the span, preventing clashing under wind and fault currents.',
+    application: 'Overhead twin-bundle transmission line spans and substation bus runs.',
+    image: '/images/products/substation-clamps/spacer.png',
+    specPage: 8,
+    featured: true
+  },
+  {
+    id: 'support-clamp-single',
+    name: 'Single Support Clamp',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
+    category: 'clamps',
+    material: 'Aluminium',
+    conductorRange: 'ZEBRA, MOOSE, MORCULLA CONDUCTOR',
+    description: 'Insulator cap-mounted clamping bracket supporting single rigid conductor lines on station post insulators.',
+    application: 'Single conductor support on substation post insulators (BPI).',
+    image: '/images/products/substation-clamps/support-clamp-single.png',
+    specPage: 10,
+    featured: false
+  },
+  {
+    id: 'support-clamp-twin',
+    name: 'Twin Support Clamp',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
+    category: 'clamps',
+    material: 'Aluminium',
+    conductorRange: 'ZEBRA, MOOSE, MORCULLA CONDUCTOR',
+    description: 'Post insulator support clamp with slotted base mounting plate for dual bundled horizontal conductors.',
+    application: 'Bus post insulator (BPI) mounting for twin conductor support.',
+    image: '/images/products/substation-clamps/support-clamp-twin.png',
+    specPage: 9,
+    featured: true
+  },
+  {
+    id: 't-twin-to-single',
+    name: 'Twin to Single T Connector',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
+    category: 'connectors',
+    material: 'Aluminium',
+    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
+    description: 'Asymmetric tee clamp connecting a single dropline tap to twin bundled horizontal conductors.',
+    application: 'Substation bay tap-offs from bundled bus conductors.',
+    image: '/images/products/substation-clamps/t-twin-to-single.png',
+    gallery: [
+      '/images/products/substation-clamps/t-twin-to-single.png',
+      '/images/products/substation-clamps/t-twin-2-singaal-225-.png'
+    ],
+    specPage: 12,
+    featured: false
+  },
+  {
+    id: 't-connector-twin-to-twin',
+    name: 'T Connector Twin to Twin Conductor',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
+    category: 'connectors',
+    material: 'Aluminium',
+    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
+    description: 'Dual bundled tee clamp connector (225mm spacing) for high-voltage multi-bundle substation junctions.',
+    application: 'Twin bundle mainline to twin bundle tap branch.',
+    image: '/images/products/substation-clamps/t-twin-2-twin-225-zebra.png',
+    specPage: 13,
+    featured: true
+  },
+  {
+    id: 'u-terminal-connector',
+    name: 'U Terminal Connector',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: '2" to 4" IPS Tube / Conductor',
+    description: 'U-configuration terminal connector designed for secure equipment stud and bus pipe termination.',
+    application: 'Substation equipment terminal interface and bus transitions.',
+    image: '/images/products/substation-clamps/u-terminalips2.png',
+    specPage: 14,
+    featured: true
+  },
+  {
+    id: 'terminal-connector-earthswitch',
+    name: 'Terminal Connector for Earth Switch',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: 'Standard Earth Switch Terminal / Twin Conductor',
+    description: 'Specialized earth switch terminal clamp providing low-impedance short-circuit fault ground path.',
+    application: 'Earthing switch terminal to overhead twin conductor.',
+    image: '/images/products/substation-clamps/terminalconnectorearthswitch.png',
+    specPage: 27,
+    featured: false
+  },
   {
     id: 'ct-connector-std',
     name: 'CT Connector',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
     category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
     material: 'Aluminium',
     conductorRange: 'DOG, PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
     description: 'Precision-cast aluminium CT clamp connector with bolted keeper for secure conductor connection to current transformers.',
     application: 'Current transformer (CT) primary terminal connection.',
+    image: '/images/products/substation-clamps/rigid_connector_ct_to_ips_tube.png',
     specPage: 5,
     featured: true
   },
   {
     id: 'palm-type-ct-twin',
     name: 'Palm Type CT Connector (Stud Twin)',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
     category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
     material: 'Aluminium',
     conductorRange: 'DOG, PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
     description: 'Dual-barrel twin conductor palm CT connector for multi-bundle transmission lines entering substation CT bays.',
     application: 'Twin conductor termination on CT primary terminal studs.',
+    image: '/images/products/substation-clamps/ct_twin_stud_to_conductor.png',
+    gallery: [
+      '/images/products/substation-clamps/ct_twin_stud_to_conductor.png',
+      '/images/products/substation-clamps/rigid_type_ct_twin_stud.png'
+    ],
     specPage: 6,
     featured: false
   },
   {
     id: 'palm-type-ct-single',
     name: 'Palm Type CT Connector (Stud Single)',
+    categoryId: 'substation-clamps-connectors',
+    categoryLabel: 'Substation Clamps & Connectors',
     category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
     material: 'Aluminium',
     conductorRange: 'DOG, PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
     description: 'Single-barrel stud clamp CT connector engineered for seamless current transfer and vibration resistance.',
     application: 'Single conductor CT terminal connection.',
+    image: '/images/products/substation-clamps/stud_to_universal_twin_cond.png',
     specPage: 7,
     featured: false
   },
 
-  // 3. T-CONNECTORS
+  // =========================================================================
+  // 2. Substation Hardware
+  // =========================================================================
   {
-    id: 't-connector-single-single',
-    name: 'T Connector Single to Single Conductor',
-    category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
-    material: 'Aluminium',
-    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: '90-degree tee connector for tapping a single drop conductor from a continuous overhead main run.',
-    application: 'Overhead busbar tee tapping and bypass connections.',
-    specPage: 11,
-    featured: false
-  },
-  {
-    id: 't-connector-twin-single',
-    name: 'T Connector Twin to Single Conductor',
-    category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
-    material: 'Aluminium',
-    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: 'Asymmetric tee clamp connecting a single dropline tap to twin bundled horizontal conductors.',
-    application: 'Substation bay tap-offs from bundled bus conductors.',
-    specPage: 12,
-    featured: false
-  },
-  {
-    id: 't-connector-twin-twin',
-    name: 'T Connector Twin to Twin Conductor',
-    category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
-    material: 'Aluminium',
-    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: 'Dual bundled tee clamp connector for high-voltage multi-bundle substation junctions.',
-    application: 'Twin bundle mainline to twin bundle tap branch.',
-    specPage: 13,
-    featured: true
-  },
-
-  // 4. CLAMPS & BUS POST SUPPORTS
-  {
-    id: 'bpi-support-twin',
-    name: 'BPI Support Clamp Twin Connector',
-    category: 'clamps',
-    categoryLabel: 'Clamps & Support Systems',
-    material: 'Aluminium',
-    conductorRange: 'ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: 'Post insulator support clamp with slotted base mounting plate for dual bundled horizontal conductors.',
-    application: 'Bus post insulator (BPI) mounting for twin conductor support.',
-    specPage: 9,
-    featured: true
-  },
-  {
-    id: 'bpi-support-single',
-    name: 'BPI Support Clamp Single Connector',
-    category: 'clamps',
-    categoryLabel: 'Clamps & Support Systems',
-    material: 'Aluminium',
-    conductorRange: 'ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: 'Insulator cap-mounted clamping bracket supporting single rigid conductor lines on station post insulators.',
-    application: 'Single conductor support on substation post insulators.',
-    specPage: 10,
-    featured: false
-  },
-  {
-    id: 'bpi-support-quad',
-    name: 'BPI Support Clamp Suitable for Quadruple Conductor',
-    category: 'clamps',
-    categoryLabel: 'Clamps & Support Systems',
-    material: 'Aluminium',
-    conductorRange: 'MOOSE, MORCULLA',
-    description: 'Heavy-duty 4-conductor spacer-support clamp assembly for 400kV / 765kV quadruple bundled substation buses.',
-    application: 'Quadruple bundled conductor bus support on high-voltage BPIs.',
-    specPage: 30,
-    featured: true
-  },
-  {
-    id: 'bus-post-clamp-4ips',
-    name: 'Through Type Bus Post Clamp Suitable for 4” IPS Tube',
-    category: 'clamps',
-    categoryLabel: 'Clamps & Support Systems',
-    material: 'Aluminium',
-    conductorRange: 'ALL SIZE OF IPS TUBE',
-    description: 'Substantial split-saddle clamp for securing 4-inch IPS tubular aluminium busbars to substation support insulators.',
-    application: 'Tubular busbar support in 132kV, 220kV, and 400kV substations.',
-    specPage: 15,
-    featured: true
-  },
-  {
-    id: 'angular-clamp-4ips',
-    name: 'Angular Clamp for 4” IPS Tube on Main and Tap',
-    category: 'clamps',
-    categoryLabel: 'Clamps & Support Systems',
-    material: 'Aluminium',
-    conductorRange: 'ALL SIZE OF IPS TUBE',
-    description: 'High-strength angular clamp providing 90-degree and angled transitions between main and tap 4" IPS aluminium tubes.',
-    application: 'Rigid tubular busbar cross-junctions and equipment feeds.',
-    specPage: 16,
-    featured: false
-  },
-  {
-    id: 'inverted-v-clamp-4ips',
-    name: '4” IPS Tube on Main and Tap “Inverted V Type”',
-    category: 'clamps',
-    categoryLabel: 'Clamps & Support Systems',
-    material: 'Aluminium',
-    conductorRange: '4” IPS Tube',
-    description: 'Inverted V-configuration bus connector providing structural flexibility and high current path between intersecting tubes.',
-    application: 'Substation tubular bus crossovers and seismic relief joints.',
-    specPage: 17,
-    featured: false
-  },
-
-  // 5. TERMINAL CONNECTORS & EXPANSION HARDWARE
-  {
-    id: 'terminal-4ips-twin',
-    name: 'Terminal Connector Suitable for 4” IPS Tube to Twin Conductor',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: 'ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: 'Transition clamp connecting 4-inch IPS tubular busbar to twin flexible stranded overhead conductors.',
-    application: 'Tubular bus to overhead flexible conductor drop transition.',
-    specPage: 14,
-    featured: true
-  },
-  {
-    id: 'terminal-4ips-quad',
-    name: 'Terminal Connector Suitable for 4” IPS Tube to Quadruple Conductor',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: 'MOOSE, MORCULLA',
-    description: '400kV+ heavy transmission connector linking 4" IPS tube to 4-bundle overhead conductors.',
-    application: 'EHV substation bus transition to quadruple bundle overhead line.',
-    specPage: 31,
-    featured: false
-  },
-  {
-    id: 'expansion-terminal-cb-pg',
-    name: 'Expansion Type Terminal Connector on CB/PG ISO. to Suit 4” IPS AL Tube',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: '4” IPS Aluminium Tube',
-    description: 'Expansion connector with flexible laminated/stranded aluminum jumpers to absorb thermal expansion and equipment vibrations.',
-    application: 'Circuit Breaker and Pantograph Isolator terminals on 4" IPS tubular bus.',
-    specPage: 18,
-    featured: true
-  },
-  {
-    id: 'expansion-terminal-bpi',
-    name: 'Expansion Type Terminal Connector on BPI to Suit 4” IPS AL Tube',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: '4” IPS Aluminium Tube',
-    description: 'Thermal compensating expansion connector mounted on bus post insulators for long tubular busbar runs.',
-    application: 'Long span tubular bus runs requiring thermal expansion absorption.',
-    specPage: 19,
-    featured: false
-  },
-  {
-    id: 'expansion-terminal-ct-twin',
-    name: 'Expansion Type Terminal Connector on CT Twin Stud to Suit 4” IPS AL Tube',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: '4” IPS Aluminium Tube',
-    description: 'Dual-stud flexible expansion connector connecting CT terminals to 4" IPS tubular busbars.',
-    application: 'Current transformer stud to IPS bus with thermal strain relief.',
-    specPage: 20,
-    featured: false
-  },
-  {
-    id: 'rigid-terminal-ct-plate',
-    name: 'Rigid Type Terminal Connector Suitable for 4” IPS Tube to CT (Plate Type)',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: '4” IPS Tube',
-    description: 'Rigid pad-to-tube connector bolted to flat CT terminal plates.',
-    application: 'Flat terminal pad to tubular bus direct connection.',
-    specPage: 21,
-    featured: false
-  },
-  {
-    id: 'rigid-terminal-cvt',
-    name: 'Rigid Type Terminal Connector Suitable for 4” IPS Tube to CVT',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: '4” IPS Tube',
-    description: 'Direct clamp terminal connector engineered specifically for Capacitive Voltage Transformer (CVT) studs.',
-    application: 'CVT equipment connection to tubular bus.',
-    specPage: 22,
-    featured: false
-  },
-  {
-    id: 'rigid-terminal-cb-pg',
-    name: 'Rigid Type Terminal Connector Suitable for 4” IPS Tube to CB/PG Isolator',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: '4” IPS Tube',
-    description: 'Rigid heavy-duty clamping connector for circuit breakers and disconnect switches.',
-    application: 'Switchgear and isolator terminal interfacing.',
-    specPage: 23,
-    featured: false
-  },
-  {
-    id: 'rigid-terminal-single-cond',
-    name: 'Rigid Type Terminal Connector Suitable for 4” IPS Tube to Single Conductor',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: '4” IPS Tube to Conductor',
-    description: 'Inline transition connector connecting tubular bus directly to a single overhead conductor.',
-    application: 'Bus end termination to line conductor.',
-    specPage: 24,
-    featured: false
-  },
-  {
-    id: 'rigid-terminal-ct-twin-stud',
-    name: 'Rigid Type Terminal Connector Suitable for 4” IPS Tube to CT Twin Stud',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: '4” IPS Tube',
-    description: 'Twin-stud rigid connector linking CT primary terminals to 4" IPS pipe.',
-    application: 'High current CT dual stud interface.',
-    specPage: 25,
-    featured: false
-  },
-  {
-    id: 'rigid-terminal-stud-twin-universal',
-    name: 'Rigid Type Terminal Connector Suitable for Stud to Twin Conductor (Universal Type)',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: 'Twin Conductor',
-    description: 'Universal adjustable stud clamp accommodating twin conductor drops.',
-    application: 'Substation equipment stud termination.',
-    specPage: 26,
-    featured: false
-  },
-  {
-    id: 'rigid-terminal-earthswitch',
-    name: 'Rigid Type Terminal Connector Suitable for Earthswitch to Twin Conductor',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: 'Twin Conductor',
-    description: 'Specialized earth switch terminal clamp providing low-impedance short-circuit fault ground path.',
-    application: 'Earthing switch terminal to overhead twin conductor.',
-    specPage: 27,
-    featured: false
-  },
-  {
-    id: 'rigid-terminal-twin-morculla',
-    name: 'Rigid Type Terminal Connector Suitable for Twin Stud to Twin Morculla Through Type',
-    category: 'terminals',
-    categoryLabel: 'Terminal & Equipment Connections',
-    material: 'Aluminium',
-    conductorRange: 'Twin Morculla Conductor',
-    description: 'Through-type clamp connector designed specifically for high-capacity heavy Morculla conductor bundles.',
-    application: '765kV / 400kV high capacity line terminal points.',
-    specPage: 28,
-    featured: false
-  },
-
-  // 6. SPACERS & PG CLAMPS
-  {
-    id: 'spacer-std',
-    name: 'Spacer',
+    id: 'sub-single-single-tension',
+    name: 'Single to Single Tension Hardware',
+    categoryId: 'substation-hardware',
+    categoryLabel: 'Substation Hardware',
     category: 'suspension-tension',
-    categoryLabel: 'Suspension & Tension Hardware',
-    material: 'Aluminium',
-    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA CONDUCTOR',
-    description: 'Twin conductor spacer maintaining uniform sub-conductor spacing along the span, preventing clashing under wind and fault currents.',
-    application: 'Overhead twin-bundle transmission line spans.',
-    specPage: 8,
-    featured: true
-  },
-  {
-    id: 'spacer-quad',
-    name: 'Spacer Suitable for Quadruple Conductor',
-    category: 'suspension-tension',
-    categoryLabel: 'Suspension & Tension Hardware',
-    material: 'Aluminium',
-    conductorRange: 'MOOSE, MORCULLA',
-    description: 'Cross-pattern 4-conductor bundle spacer engineered for aerodynamic stability and mechanical retention.',
-    application: '400kV / 765kV quad-bundle transmission spans.',
-    specPage: 32,
-    featured: false
-  },
-  {
-    id: 'pg-clamp-std',
-    name: 'PG Clamp (Parallel Groove Clamp)',
-    category: 'connectors',
-    categoryLabel: 'Electrical Connectors',
-    material: 'Aluminium',
-    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA',
-    description: 'Extruded parallel groove clamp with three high-tensile hot-dip galvanized steel bolts for non-tension jumper loops and tap connections.',
-    application: 'Tension tower jumper loops and electrical tap connections.',
-    specPage: 34,
-    featured: false
-  },
-
-  // 7. SUSPENSION & TENSION HARDWARE
-  {
-    id: 'suspension-hw-twin',
-    name: 'Suspension Hardware for Twin Conductor',
-    category: 'suspension-tension',
-    categoryLabel: 'Suspension & Tension Hardware',
     material: 'Aluminium / MS (HDGI)',
     conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA',
-    description: 'Complete suspension string hardware assembly with yoke plate, suspension clamps, and forged hook for twin conductor strings.',
-    application: 'Suspension towers on 220kV / 400kV transmission lines.',
-    specPage: 35,
+    description: 'Dead-end tension assembly with heavy-duty strain clamp, ball-eye, socket-clevis, and hardware fittings for terminating single conductor on substation structures.',
+    application: 'Substation gantry tension and dead-end termination for single conductors.',
+    image: '/images/products/substation-hardware/single to single tension hardware.png',
+    specPage: 37,
     featured: true
   },
   {
-    id: 'single-suspension-hw',
-    name: 'Single Suspension Hardware',
+    id: 'sub-single-single-suspension',
+    name: 'Single to Single Suspension Hardware',
+    categoryId: 'substation-hardware',
+    categoryLabel: 'Substation Hardware',
     category: 'suspension-tension',
-    categoryLabel: 'Suspension & Tension Hardware',
     material: 'Aluminium / MS (HDGI)',
     conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA',
-    description: 'Single-conductor suspension clamp assembly with ball/socket and clevis attachment for transmission and distribution lines.',
-    application: 'Single conductor transmission line suspension points.',
+    description: 'Complete suspension assembly with suspension clamp, socket eye, and ball link for flexible conductor suspension on substation gantries.',
+    application: 'Substation gantry conductor suspension for single conductor string.',
+    image: '/images/products/substation-hardware/single to single suspension hardware.png',
     specPage: 36,
     featured: false
   },
   {
-    id: 'single-tension-hw',
-    name: 'Single Tension Hardware for Single Conductor',
+    id: 'sub-single-single-suspension-d-shackle',
+    name: 'Single to Single Suspension D-Shackle Type',
+    categoryId: 'substation-hardware',
+    categoryLabel: 'Substation Hardware',
     category: 'suspension-tension',
-    categoryLabel: 'Suspension & Tension Hardware',
     material: 'Aluminium / MS (HDGI)',
     conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA',
-    description: 'Dead-end tension assembly with compression/bolted strain clamp and extension links engineered to hold maximum working tensile load.',
-    application: 'Angle and dead-end tension towers for single conductor.',
-    specPage: 37,
+    description: 'Single conductor suspension assembly featuring heavy-duty forged D-shackle connection for increased articulation and mechanical strength.',
+    application: 'Substation suspension points requiring D-shackle anchor fittings.',
+    image: '/images/products/substation-hardware/single to single suspension hardware d shackle.png',
     featured: false
   },
   {
-    id: 'tension-hw-twin',
-    name: 'Tension Hardware for Twin Conductor',
+    id: 'sub-single-single-drop-suspension',
+    name: 'Single to Single Drop Type Suspension Hardware',
+    categoryId: 'substation-hardware',
+    categoryLabel: 'Substation Hardware',
     category: 'suspension-tension',
-    categoryLabel: 'Suspension & Tension Hardware',
     material: 'Aluminium / MS (HDGI)',
     conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA',
-    description: 'Twin-bundle strain tension assembly with heavy forged steel yoke plate and dual compression dead-end clamps.',
-    application: 'Dead-end and heavy angle towers for twin bundle lines.',
+    description: 'Specialized drop-type suspension assembly designed for overhead dropper conductor connections and bus run transitions.',
+    application: 'Substation dropper suspension and equipment lead support.',
+    image: '/images/products/substation-hardware/single to single drop suspension hardware.png',
+    featured: false
+  },
+  {
+    id: 'sub-single-twin-tension',
+    name: 'Single to Twin Tension Hardware',
+    categoryId: 'substation-hardware',
+    categoryLabel: 'Substation Hardware',
+    category: 'suspension-tension',
+    material: 'Aluminium / MS (HDGI)',
+    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA',
+    description: 'Heavy-duty strain tension assembly with triangular yoke plate (225mm spacing) and dual compression strain clamps connecting a single anchor point to twin bundled conductors.',
+    application: 'Substation gantry dead-end termination transitioning from structure anchor to twin bundle lines.',
+    image: '/images/products/substation-hardware/single to twin tension hardware.png',
     specPage: 38,
     featured: true
   },
-
-  // 8. EARTHING & SPECIAL COMPONENTS
   {
-    id: 'flexible-copper-earth-bond',
-    name: 'Flexible Copper Earth Bond',
-    category: 'earthing',
-    categoryLabel: 'Earthing Components',
-    material: 'Copper',
-    conductorRange: 'Standard & Custom Lengths',
-    description: 'High-flexibility tinned/bare copper braided bonding jumper with robust compression end terminals for grounding steel structures and equipment frames.',
-    application: 'Equipment grounding, gate earthing, and structure bonding.',
-    specPage: 39,
+    id: 'sub-single-twin-suspension',
+    name: 'Single to Twin Suspension Hardware',
+    categoryId: 'substation-hardware',
+    categoryLabel: 'Substation Hardware',
+    category: 'suspension-tension',
+    material: 'Aluminium / MS (HDGI)',
+    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA',
+    description: 'Complete twin-conductor suspension assembly with triangular yoke plate and twin suspension clamps for supporting bundled conductors.',
+    application: 'Substation twin conductor bundle suspension on support gantries.',
+    image: '/images/products/substation-hardware/single to twin suspension hardware.png',
+    specPage: 35,
     featured: true
   },
   {
+    id: 'sub-single-twin-suspension-d-shackle',
+    name: 'Single to Twin Suspension D-Shackle Type',
+    categoryId: 'substation-hardware',
+    categoryLabel: 'Substation Hardware',
+    category: 'suspension-tension',
+    material: 'Aluminium / MS (HDGI)',
+    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA',
+    description: 'Twin-conductor suspension assembly with forged D-shackle top attachment and triangular yoke plate for articulated suspension of twin bundles.',
+    application: 'Heavy-duty articulated twin suspension on substation gantry towers.',
+    image: '/images/products/substation-hardware/single to twin suspension d shackle.png',
+    featured: false
+  },
+  {
+    id: 'sub-single-twin-drop-suspension',
+    name: 'Single to Twin Drop Type Suspension Hardware',
+    categoryId: 'substation-hardware',
+    categoryLabel: 'Substation Hardware',
+    category: 'suspension-tension',
+    material: 'Aluminium / MS (HDGI)',
+    conductorRange: 'PANTHER, ZEBRA, MOOSE, MORCULLA',
+    description: 'Twin-conductor drop type suspension assembly for vertical and angled dropper runs in substation bays.',
+    application: 'Substation twin-conductor drop connections and transformer bay leads.',
+    image: '/images/products/substation-hardware/single to twin drop suspension hardware.png',
+    featured: false
+  },
+
+  // =========================================================================
+  // 3. Earthwire Hardware
+  // =========================================================================
+  {
     id: 'earthwire-tension-clamp',
     name: 'Earthwire Tension Clamp',
+    categoryId: 'earthwire-hardware',
+    categoryLabel: 'Earthwire Hardware',
     category: 'earthing',
-    categoryLabel: 'Earthing Components',
     material: 'MS (HDGI)',
-    conductorRange: 'Standard Galvanized Steel Ground Wire',
+    conductorRange: 'Standard Galvanized Steel Ground Wire / Earthwire',
     description: 'Hot-dip galvanized forged steel dead-end tension clamp for terminating optical ground wire (OPGW) or standard steel earthwire.',
-    application: 'Transmission tower peak earthwire termination.',
+    application: 'Transmission tower peak and substation gantry earthwire termination.',
     specPage: 40,
     featured: true
   },
   {
-    id: 'transformer-bushing-clamp',
-    name: 'Transformer Bushing Clamp',
-    category: 'clamps',
-    categoryLabel: 'Clamps & Support Systems',
-    material: 'Copper / Brass',
-    conductorRange: 'Standard Transformer Bushing Studs',
-    description: 'Cast copper/brass alloy heavy-duty angle clamp with 4-hole terminal spade for high-current low-loss transformer bushing connection.',
-    application: 'Power and distribution transformer primary and secondary bushing studs.',
-    specPage: 33,
+    id: 'earthwire-suspension-clamp',
+    name: 'Earthwire Suspension Clamp',
+    categoryId: 'earthwire-hardware',
+    categoryLabel: 'Earthwire Hardware',
+    category: 'earthing',
+    material: 'MS (HDGI)',
+    conductorRange: 'Standard Galvanized Steel Ground Wire',
+    description: 'Hot-dip galvanized suspension clamp assembly engineered for overhead ground wire suspension with low vibration fatigue.',
+    application: 'Transmission tower and substation peak overhead ground wire suspension.',
+    featured: false
+  },
+  {
+    id: 'flexible-copper-earth-bond',
+    name: 'Flexible Copper Earth Bond',
+    categoryId: 'earthwire-hardware',
+    categoryLabel: 'Earthwire Hardware',
+    category: 'earthing',
+    material: 'Electrolytic Grade Copper',
+    conductorRange: 'Standard & Custom Lengths',
+    description: 'High-flexibility tinned/bare copper braided bonding jumper with robust compression end terminals for grounding steel structures and equipment frames.',
+    application: 'Substation equipment grounding, gate earthing, and structure bonding.',
+    specPage: 39,
+    featured: true
+  },
+
+  // =========================================================================
+  // 4. Bimetallic Sheets & Sleeves
+  // =========================================================================
+  {
+    id: 'bimetallic-sheets',
+    name: 'Bimetallic Sheets & Plates',
+    categoryId: 'bimetallic-sheets-sleeves',
+    categoryLabel: 'Bimetallic Sheets & Sleeves',
+    category: 'custom',
+    material: 'Aluminium-Copper Friction Welded / Explosive Clad',
+    conductorRange: 'Standard & Custom Dimensions',
+    description: 'High-conductivity transition plates composed of metallurgically bonded copper and aluminium faces to prevent galvanic corrosion between dissimilar metal interfaces.',
+    application: 'Substation transformer palms, circuit breaker copper terminals, and aluminium busbars.',
     featured: true
   },
   {
-    id: 'u-type-connecting-plates-breaker',
-    name: 'U Type Connecting Plates for Breaker',
+    id: 'bimetallic-sleeves',
+    name: 'Bimetallic Transition Sleeves',
+    categoryId: 'bimetallic-sheets-sleeves',
+    categoryLabel: 'Bimetallic Sheets & Sleeves',
     category: 'custom',
-    categoryLabel: 'Custom Engineering Solutions',
+    material: 'High Conductivity Aluminium & Copper',
+    conductorRange: 'Standard Cable & Conductor Sizes',
+    description: 'Compression transition sleeves for splicing or terminating copper and aluminium conductors without electrochemical degradation.',
+    application: 'Cable-to-bus transitions, grounding taps, and bi-metallic conductor joints.',
+    featured: false
+  },
+
+  // =========================================================================
+  // 5. Transmission Line Hardware
+  // =========================================================================
+  {
+    id: 'line-single-string-single-susp-norm',
+    name: 'Single String for Single Suspension – Normal',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Cast Aluminium (HDGI)',
+    conductorRange: 'Standard Transmission Line Conductors',
+    description: 'Standard single-string suspension insulator hardware assembly with ball/socket fittings and suspension clamp for normal overhead spans.',
+    application: 'Intermediate suspension towers on high-voltage transmission lines.',
+    image: '/images/products/line-hardware/single  string for single suspension normal.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: true
+  },
+  {
+    id: 'line-single-string-single-susp-appr',
+    name: 'Single String for Single Suspension – Approach',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Cast Aluminium (HDGI)',
+    conductorRange: 'Standard Transmission Line Conductors',
+    description: 'Approach tower single-string suspension assembly engineered for approach angles and increased mechanical loads near substations.',
+    application: 'Substation approach towers and angled suspension spans.',
+    image: '/images/products/line-hardware/single  string for single suspension approch.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  {
+    id: 'line-single-string-single-tens-norm',
+    name: 'Single String for Single Tension – Normal',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Compression Aluminium (HDGI)',
+    conductorRange: 'Standard Transmission Line Conductors',
+    description: 'Single-string tension dead-end assembly with compression strain clamp and extension links engineered to hold maximum working tensile load.',
+    application: 'Section, angle, and dead-end tension towers for single conductor.',
+    image: '/images/products/line-hardware/single string for single tension normal.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  {
+    id: 'line-single-string-single-tens-appr',
+    name: 'Single String for Single Tension – Approach',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Compression Aluminium (HDGI)',
+    conductorRange: 'Standard Transmission Line Conductors',
+    description: 'Single-string tension dead-end assembly configured for line approach angles entering substation gantry structures.',
+    application: 'Approach tension towers and terminal gantry dead-ends.',
+    image: '/images/products/line-hardware/single  string for single tension approch.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  {
+    id: 'line-double-string-single-susp-norm',
+    name: 'Double String for Single Suspension – Normal',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Cast Aluminium (HDGI)',
+    conductorRange: 'Standard Transmission Line Conductors',
+    description: 'Dual insulator string suspension assembly with yoke plates providing mechanical redundancy for critical highway and river crossings.',
+    application: 'Long span crossings and heavy load suspension towers.',
+    image: '/images/products/line-hardware/double string for single suspension normal.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: true
+  },
+  {
+    id: 'line-double-string-single-susp-appr',
+    name: 'Double String for Single Suspension – Approach',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Cast Aluminium (HDGI)',
+    conductorRange: 'Standard Transmission Line Conductors',
+    description: 'Dual string suspension assembly tailored for approach spans with higher uplift and angle stress near terminal substations.',
+    application: 'Terminal approach towers requiring double string mechanical security.',
+    image: '/images/products/line-hardware/double string for single suspension approch.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  {
+    id: 'line-double-string-single-tens-norm',
+    name: 'Double String for Single Tension – Normal',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Compression Aluminium (HDGI)',
+    conductorRange: 'Standard Transmission Line Conductors',
+    description: 'Heavy-duty double string tension dead-end assembly with dual yoke plates and high-strength compression dead-ends.',
+    application: 'Heavy angle and dead-end transmission towers requiring redundant mechanical safety.',
+    image: '/images/products/line-hardware/double string for single tension normal.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: true
+  },
+  {
+    id: 'line-double-string-single-tens-appr',
+    name: 'Double String for Single Tension – Approach',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Compression Aluminium (HDGI)',
+    conductorRange: 'Standard Transmission Line Conductors',
+    description: 'Double string tension assembly optimized for substation approach towers with high horizontal line tension.',
+    application: 'Substation approach dead-end towers.',
+    image: '/images/products/line-hardware/double string for single tension approch.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  {
+    id: 'line-04-single-string-single-susp-norm',
+    name: '0.4 Single String for Single Suspension – Normal',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Cast Aluminium (HDGI)',
+    conductorRange: '0.4 Specification Conductors',
+    description: '0.4 rated single string suspension assembly engineered to specific clearance and mechanical rating standards for overhead lines.',
+    application: '0.4 rated transmission line intermediate suspension points.',
+    image: '/images/products/line-hardware/0.4 single  string for single suspension normal.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  {
+    id: 'line-04-single-string-single-susp-appr',
+    name: '0.4 Single String for Single Suspension – Approach',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Cast Aluminium (HDGI)',
+    conductorRange: '0.4 Specification Conductors',
+    description: '0.4 rated approach single string suspension assembly for transition spans.',
+    application: '0.4 rated approach spans near line angle towers.',
+    image: '/images/products/line-hardware/0.4 single  string for single suspension approch.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  {
+    id: 'line-04-single-string-single-tens-norm',
+    name: '0.4 Single String for Single Tension – Normal',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Compression Aluminium (HDGI)',
+    conductorRange: '0.4 Specification Conductors',
+    description: '0.4 rated single string tension dead-end assembly designed for high mechanical grip.',
+    application: '0.4 rated section and dead-end transmission towers.',
+    image: '/images/products/line-hardware/0.4 single  string for single tension normal.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  {
+    id: 'line-04-single-string-single-tens-appr',
+    name: '0.4 Single String for Single Tension – Approach',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Compression Aluminium (HDGI)',
+    conductorRange: '0.4 Specification Conductors',
+    description: '0.4 rated single string tension approach assembly for terminal line entries.',
+    application: '0.4 rated terminal approach towers.',
+    image: '/images/products/line-hardware/0.4 single  string for single tension approch.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  {
+    id: 'line-04-double-string-single-tens-norm',
+    name: '0.4 Double String for Single Tension – Normal',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Compression Aluminium (HDGI)',
+    conductorRange: '0.4 Specification Conductors',
+    description: '0.4 rated dual string tension assembly providing double insulator reliability.',
+    application: '0.4 rated dead-end towers and heavy angle positions.',
+    image: '/images/products/line-hardware/0.4 double string for single tension normal.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  {
+    id: 'line-04-double-string-single-tens-appr',
+    name: '0.4 Double String for Single Tension – Approach',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Forged Steel & Compression Aluminium (HDGI)',
+    conductorRange: '0.4 Specification Conductors',
+    description: '0.4 rated double string approach tension assembly for terminal switchyard approaches.',
+    application: '0.4 rated approach dead-end points.',
+    image: '/images/products/line-hardware/0.4 double string for single tension approch.jpg',
+    subGroup: 'Line Hardware Assemblies',
+    featured: false
+  },
+  // HTLS Hardware Group
+  {
+    id: 'htls-hardware-set',
+    name: 'HTLS Hardware Set (Complete Assembly)',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Aluminium & High-Strength Steel',
+    conductorRange: 'Drake / HTLS Conductors',
+    description: 'Complete High Temperature Low Sag (HTLS) conductor dead-end tension hardware assembly designed to operate reliably under high thermal and mechanical stress.',
+    application: 'HTLS high capacity transmission line dead-end anchoring.',
+    image: '/images/products/htls-hardware/htls hardware set.png',
+    gallery: [
+      '/images/products/htls-hardware/htls hardware set.png',
+      '/images/products/htls-hardware/htls hardware set iso.png'
+    ],
+    subGroup: 'HTLS Hardware',
+    featured: true
+  },
+  {
+    id: 'htls-drake-aluminium-dead-end',
+    name: 'Drake Aluminium Dead End (HTLS)',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'High-Conductivity Aluminium',
+    conductorRange: 'HTLS Drake Conductor',
+    description: 'Aluminium dead-end outer body for high temperature current conduction and mechanical retention of HTLS conductors.',
+    application: 'Dead-end tension termination for HTLS Drake conductor.',
+    image: '/images/products/htls-hardware/drake_aluminium_dead_end.png',
+    subGroup: 'HTLS Hardware',
+    featured: false
+  },
+  {
+    id: 'htls-steel-deadend-drake',
+    name: 'Steel Dead End Drake (HTLS)',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'High-Strength Forged Steel (HDGI)',
+    conductorRange: 'HTLS Drake Steel/Composite Core',
+    description: 'High-tensile steel dead-end gripping the inner core of HTLS Drake conductor to withstand high line tensions.',
+    application: 'Core gripping component of HTLS tension assembly.',
+    image: '/images/products/htls-hardware/steel_deadend_drake.png',
+    subGroup: 'HTLS Hardware',
+    featured: false
+  },
+  {
+    id: 'htls-dend-in-pipe',
+    name: 'HTLS Dead End in Pipe Assembly',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Aluminium & Steel Assembly',
+    conductorRange: 'HTLS Conductor Assembly',
+    description: 'HTLS compression dead-end sleeve inserted into aluminium pipe assembly for high thermal mechanical anchoring.',
+    application: 'High-voltage HTLS line tension joint.',
+    image: '/images/products/htls-hardware/dend_in_pipe.png',
+    subGroup: 'HTLS Hardware',
+    featured: false
+  },
+  {
+    id: 'htls-jumper-cone',
+    name: 'HTLS Jumper Cone',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Aluminium Alloy',
+    conductorRange: 'HTLS Conductor Jumper Loop',
+    description: 'Conical terminal fitting for jumper loop connections on HTLS tension towers.',
+    application: 'HTLS jumper lead connection.',
+    image: '/images/products/htls-hardware/jumper_cone.png',
+    subGroup: 'HTLS Hardware',
+    featured: false
+  },
+  {
+    id: 'htls-drake-stud',
+    name: 'Drake Stud (HTLS)',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'Aluminium Alloy / High-Tensile Steel',
+    conductorRange: 'HTLS Drake Fittings',
+    description: 'Precision threaded terminal stud for Drake size HTLS hardware terminations and connections.',
+    application: 'HTLS hardware terminal interfacing.',
+    image: '/images/products/htls-hardware/drake_stud.png',
+    subGroup: 'HTLS Hardware',
+    featured: false
+  },
+  {
+    id: 'htls-collet',
+    name: 'HTLS Collet',
+    categoryId: 'transmission-line-hardware',
+    categoryLabel: 'Transmission Line Hardware',
+    category: 'suspension-tension',
+    material: 'High Strength Alloy',
+    conductorRange: 'HTLS Core Grip',
+    description: 'Precision-machined locking collet providing high friction retention without damaging composite/steel conductor core.',
+    application: 'Core clamping within HTLS tension hardware.',
+    image: '/images/products/htls-hardware/collet.png',
+    subGroup: 'HTLS Hardware',
+    featured: false
+  },
+
+  // =========================================================================
+  // 6. Clamps & Connectors for 400 kV and Above
+  // =========================================================================
+  {
+    id: '400kv-t-conn-single-quad-horiz',
+    name: 'T Connector Single to Quad Conductor Horizontal',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'connectors',
     material: 'Aluminium',
-    conductorRange: 'Custom Breaker Terminals',
-    description: 'Precision fabricated U-profile aluminium bus adapter plate with pre-drilled terminal hole matrices for circuit breaker bus interconnection.',
-    application: 'Circuit breaker terminal interconnection and phase bridging.',
-    specPage: 29,
+    conductorRange: 'MOOSE, MORCULLA, 400kV Quad Bundle',
+    description: 'Horizontal tee connector clamp designed for tapping single dropper conductor from 400kV quad-bundle horizontal conductor run.',
+    application: '400kV EHV substation horizontal bay tap-off.',
+    image: '/images/products/400kv-clamps-connectors/t connector single to quad conductor horizontal.png',
+    featured: true
+  },
+  {
+    id: '400kv-t-conn-single-quad',
+    name: 'T Connector Single to Quad Conductor',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'connectors',
+    material: 'Aluminium',
+    conductorRange: 'MOOSE, MORCULLA, 400kV Quad Bundle',
+    description: 'T-connector engineered to branch single conductor leads from quad-bundle conductor buses in 400kV substations.',
+    application: '400kV / 765kV substation busbar dropper connections.',
+    image: '/images/products/400kv-clamps-connectors/t connector single to quad conductor.png',
+    featured: false
+  },
+  {
+    id: '400kv-t-conn-twin-twin',
+    name: 'T Connector Twin to Twin',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'connectors',
+    material: 'Aluminium',
+    conductorRange: 'Twin Morculla / Zebra Conductor',
+    description: 'Dual-run tee connector connecting twin-bundle main bus runs to twin-bundle branch feeds with heavy bolted keepers.',
+    application: '400kV switchyard twin-to-twin bus branching.',
+    image: '/images/products/400kv-clamps-connectors/t_connect_twin_morq_twin_morcul.png',
+    featured: true
+  },
+  {
+    id: '400kv-t-type-ips-ips',
+    name: 'T Type IPS to IPS Tube Clamp',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'clamps',
+    material: 'Aluminium',
+    conductorRange: '3" / 4" / 4.5" IPS Aluminium Tube',
+    description: '90-degree heavy-duty split-body clamp connecting main IPS tubular busbar to branch IPS tube.',
+    application: 'Tubular bus cross-connections in 400kV substations.',
+    image: '/images/products/400kv-clamps-connectors/t_type_ips_to_ips_tube_clamp.png',
+    featured: false
+  },
+  {
+    id: '400kv-t-conn-twin-quad',
+    name: 'T Connector Twin to Quad',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'connectors',
+    material: 'Aluminium',
+    conductorRange: 'Twin to Quad Bundle Conductor',
+    description: 'Transition tee clamp connecting twin-bundle feeders to quadruple-bundle main bus lines.',
+    application: '400kV substation bay expansion and bay entrance junctions.',
+    image: '/images/products/400kv-clamps-connectors/t-connector twin-to quad.png',
+    featured: false
+  },
+  {
+    id: '400kv-t-conn-twin',
+    name: 'T Connector for Twin Conductor',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'connectors',
+    material: 'Aluminium',
+    conductorRange: 'ZEBRA, MOOSE, MORCULLA',
+    description: 'Precision tee clamp designed for 400kV twin conductor lines ensuring corona-free high current transfer.',
+    application: '400kV twin conductor busbar branching.',
+    image: '/images/products/400kv-clamps-connectors/tconnectorfortwin.png',
+    featured: false
+  },
+  {
+    id: '400kv-tee-conn-quad-twin',
+    name: 'Tee Connector Quad to Twin',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'connectors',
+    material: 'Aluminium',
+    conductorRange: 'Quad Morculla to Twin Morculla',
+    description: 'High-voltage tee clamp connecting quad-bundle bus to twin-bundle dropper lines with robust clamping geometry.',
+    application: '400kV busbar tap-offs to equipment bays.',
+    image: '/images/products/400kv-clamps-connectors/tee_connector_quad_to_twin_morc.png',
+    featured: true
+  },
+  {
+    id: '400kv-terminal-conn-earth-switch',
+    name: 'Terminal Connector Earth Switch',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: '400kV Earth Switch Terminals / Conductor',
+    description: 'Heavy-duty terminal connector engineered for 400kV earth switch assemblies to ensure reliable fault current dissipation.',
+    application: '400kV earthing switch blade and structure ground connections.',
+    image: '/images/products/400kv-clamps-connectors/terminalconnectorearthswitch.png',
+    featured: false
+  },
+  {
+    id: '400kv-u-connecting-plate',
+    name: 'U Connecting Plate',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'custom',
+    material: 'Aluminium',
+    conductorRange: '400kV Breaker / Isolator Terminals',
+    description: 'Heavy aluminium U-shaped bridging adapter plate for high-current equipment terminal interconnection.',
+    application: '400kV circuit breaker and isolator terminal bridging.',
+    image: '/images/products/400kv-clamps-connectors/uconnectingplate.png',
+    featured: true
+  },
+  {
+    id: '400kv-u-connecting-plate-80x80',
+    name: 'U Connecting Plate 80 × 80',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'custom',
+    material: 'Aluminium',
+    conductorRange: '80 × 80 mm Terminal Pad Spacing',
+    description: 'Precision-drilled U-profile connecting plate with 80 × 80 mm hole matrix for high-voltage breaker terminals.',
+    application: 'Equipment terminal linking in 400kV switchgear bays.',
+    image: '/images/products/400kv-clamps-connectors/uconnectingplate80x80.png',
+    featured: false
+  },
+  {
+    id: '400kv-v-type-ips-two-ips',
+    name: 'V Type IPS to Two IPS Tube Clamp',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'clamps',
+    material: 'Aluminium',
+    conductorRange: 'IPS Tubular Aluminium Bus',
+    description: 'Inverted V-configuration connector joining a main IPS tube to two angled IPS tubes for seismic and thermal flexibility.',
+    application: 'Substation tubular bus crossovers and flexible junctions.',
+    image: '/images/products/400kv-clamps-connectors/v_type_ips_to_2 ips_tube_clamp.png',
+    featured: false
+  },
+  {
+    id: '400kv-4inch-ips-twin-cond',
+    name: '4 Inch IPS to Twin Conductor',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: '4” IPS Tube to Twin MOOSE / MORCULLA',
+    description: 'Transition terminal connector linking 4-inch IPS tubular busbar to twin flexible stranded overhead conductors.',
+    application: 'Tubular busbar to overhead twin line conductor interface.',
+    image: '/images/products/400kv-clamps-connectors/4 inch ips to twin conductor.png',
+    featured: true
+  },
+  {
+    id: '400kv-10-deg-ips-ips',
+    name: '10 Degree IPS to IPS',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'clamps',
+    material: 'Aluminium',
+    conductorRange: '4” IPS Aluminium Tube',
+    description: '10-degree angled rigid clamp connector connecting two adjoining IPS aluminium bus tubes at slight angles.',
+    application: 'Bus alignment correction and angled tubular bus transitions in 400kV bays.',
+    image: '/images/products/400kv-clamps-connectors/10_deg_ips_to_ips.png',
+    featured: false
+  },
+  {
+    id: '400kv-bpi-ips-support',
+    name: 'BPI IPS Support',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'clamps',
+    material: 'Aluminium',
+    conductorRange: '4” IPS Tube / Bus Post Insulators',
+    description: 'Heavy-duty support clamp mounted on bus post insulators (BPI) to support 4" IPS aluminium tubular busbars.',
+    application: '400kV bus post insulator mounting and tubular bus support.',
+    image: '/images/products/400kv-clamps-connectors/bpi_ips_support.png',
+    featured: true
+  },
+  {
+    id: '400kv-brass-bushing-clamp',
+    name: 'Brass Bushing Clamp',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'clamps',
+    material: 'High-Tensile Brass / Copper Alloy',
+    conductorRange: 'Transformer Bushing Studs',
+    description: 'Cast brass angle clamp with bolted pad for mounting directly to transformer primary and secondary bushing studs.',
+    application: 'Power transformer bushing stud connections.',
+    image: '/images/products/400kv-clamps-connectors/bushing_clamp_brass.png',
+    featured: true
+  },
+  {
+    id: '400kv-corona-bell',
+    name: 'Corona Bell',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'custom',
+    material: 'Aluminium Alloy',
+    conductorRange: '4” IPS Tube End',
+    description: 'Smooth electrostatic shield bell fitted at the open ends of 4" IPS aluminium tubes to eliminate corona discharge and RIV.',
+    application: 'Open tube end shielding on 400kV and 765kV tubular busbars.',
+    image: '/images/products/400kv-clamps-connectors/corona_bell.png',
+    featured: false
+  },
+  {
+    id: '400kv-ct-twin-stud-60',
+    name: 'CT Twin Stud 60',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: '60mm CT Primary Studs',
+    description: 'Heavy-duty dual stud terminal clamp engineered specifically for 60mm diameter CT primary terminal studs.',
+    application: 'Current transformer stud termination in 400kV substations.',
+    image: '/images/products/400kv-clamps-connectors/ct_twin_stud_60.png',
+    featured: false
+  },
+  {
+    id: '400kv-ct-twin-stud-cond',
+    name: 'CT Twin Stud to Conductor',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: 'Twin ACSR Conductor / CT Studs',
+    description: 'Dual-barrel connector linking CT primary twin studs to overhead twin bundled conductors.',
+    application: '400kV CT terminal to overhead line conductor bay transition.',
+    image: '/images/products/400kv-clamps-connectors/ct_twin_stud_to_conductor.png',
+    featured: true
+  },
+  {
+    id: '400kv-hp-brass-bushing-clamp',
+    name: 'HP Brass Bushing Clamp',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'clamps',
+    material: 'High-Performance Brass',
+    conductorRange: 'High Power Transformer Bushings',
+    description: 'High-performance heavy-duty cast brass bushing clamp engineered for superior ampacity and low thermal rise.',
+    application: 'High power transformer and reactor bushing connections.',
+    image: '/images/products/400kv-clamps-connectors/hp bushing_clamp_brass.png',
+    featured: false
+  },
+  {
+    id: '400kv-rigid-conn-ips',
+    name: 'Rigid Connector IPS',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: '4” IPS Tube to Equipment Pad',
+    description: 'Rigid clamping connector for terminating 4" IPS aluminium pipe directly to equipment terminal pads.',
+    application: 'Tubular busbar termination to switchgear equipment.',
+    image: '/images/products/400kv-clamps-connectors/rigid_connector_ips to.png',
+    featured: false
+  },
+  {
+    id: '400kv-rigid-conn-ips-tube',
+    name: 'Rigid Connector IPS Tube',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: '4” IPS Tube',
+    description: 'In-line sleeve clamp connector for rigid jointing of two tubular aluminium busbars.',
+    application: 'Tubular busbar coupling and straight jointing.',
+    image: '/images/products/400kv-clamps-connectors/rigid_connector_ips_tube.png',
+    featured: false
+  },
+  {
+    id: '400kv-rigid-type-to-ips',
+    name: 'Rigid Type to IPS',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: '4” IPS Tube',
+    description: 'Rigid heavy-duty transition connector for connecting substation equipment terminal pads to 4" IPS tube.',
+    application: 'Equipment pad to tubular busbar connections.',
+    image: '/images/products/400kv-clamps-connectors/rigid_type__to_ips.png',
+    featured: false
+  },
+  {
+    id: '400kv-rigid-type-ct-twin-stud',
+    name: 'Rigid Type CT Twin Stud',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: 'CT Twin Stud to IPS / Conductor',
+    description: 'Twin-stud rigid connector linking CT primary terminals to substation busbar.',
+    application: 'Current transformer dual stud rigid terminal interface.',
+    image: '/images/products/400kv-clamps-connectors/rigid_type_ct_twin_stud.png',
+    featured: false
+  },
+  {
+    id: '400kv-rigid-type-hcb-isolator',
+    name: 'Rigid Type HCB Isolator',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: '4” IPS Tube / Isolator Pad',
+    description: 'Rigid clamping connector designed for Horizontal Center Break (HCB) disconnect isolator terminals.',
+    application: '400kV isolator switch terminal connections.',
+    image: '/images/products/400kv-clamps-connectors/rigid_type_hcb_isolator.png',
+    featured: false
+  },
+  {
+    id: '400kv-rigid-type-stud-to-ips',
+    name: 'Rigid Type Stud to IPS',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: 'Equipment Stud to 4” IPS Tube',
+    description: 'Direct stud-to-tube rigid clamp for coupling equipment cylindrical studs to 4" IPS aluminium pipe.',
+    application: 'Substation equipment stud to tubular busbar interfacing.',
+    image: '/images/products/400kv-clamps-connectors/rigid_type_stud_to_ips.png',
+    featured: false
+  },
+  {
+    id: '400kv-quadruple-spacer',
+    name: 'Quadruple Spacer',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'suspension-tension',
+    material: 'Aluminium',
+    conductorRange: 'MOOSE, MORCULLA (4-Bundle)',
+    description: 'High-voltage 4-conductor spacer maintaining sub-conductor spacing and aerodynamic stability across 400kV spans.',
+    application: '400kV / 765kV quad-bundle transmission spans and substation bus runs.',
+    image: '/images/products/400kv-clamps-connectors/spacerquadruplemorqulla.png',
+    featured: true
+  },
+  {
+    id: '400kv-stud-to-twin-conductor',
+    name: 'Stud to Twin Conductor',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'terminals',
+    material: 'Aluminium',
+    conductorRange: 'Twin ACSR Conductor / Stud',
+    description: 'Universal stud clamp providing dual bolted keepers to connect equipment studs directly to twin overhead conductors.',
+    application: 'Equipment stud termination to twin bundled conductors.',
+    image: '/images/products/400kv-clamps-connectors/stud to twin conductor.png',
+    featured: false
+  },
+  {
+    id: '400kv-quad-support-clamp',
+    name: 'Quad Support Clamp',
+    categoryId: 'clamps-connectors-400kv-above',
+    categoryLabel: 'Clamps & Connectors for 400 kV and Above',
+    category: 'clamps',
+    material: 'Aluminium',
+    conductorRange: 'MOOSE, MORCULLA (Quad Bundle)',
+    description: 'Heavy-duty post insulator support clamp supporting 4-bundle horizontal conductors on 400kV bus post insulators.',
+    application: '400kV quadruple bundled conductor bus support on BPIs.',
+    image: '/images/products/400kv-clamps-connectors/support-clamp-quad.png',
     featured: true
   }
 ];
@@ -653,30 +1253,15 @@ export const CATALOG_IMAGES: Record<number, string> = {
   40: '/images/catalog_extracted/page_40_1565x1106.jpeg',
 };
 
-export interface ProductCategoryItem {
-  id: string;
-  label: string;
+export function getProductCategory(specPageOrProduct?: number | Product): string {
+  if (!specPageOrProduct) return 'substation-clamps-connectors';
+  if (typeof specPageOrProduct === 'object') {
+    return specPageOrProduct.categoryId || 'substation-clamps-connectors';
+  }
+  const specPage = specPageOrProduct;
+  if (specPage >= 1 && specPage <= 14) return 'substation-clamps-connectors';
+  if (specPage >= 35 && specPage <= 38) return 'substation-hardware';
+  if (specPage >= 39 && specPage <= 40) return 'earthwire-hardware';
+  if (specPage >= 15 && specPage <= 34) return 'clamps-connectors-400kv-above';
+  return 'substation-clamps-connectors';
 }
-
-export const PRODUCT_CATEGORIES: ProductCategoryItem[] = [
-  { id: 'palm-connectors', label: 'Palm Connectors' },
-  { id: 'ct-connectors', label: 'CT Connectors' },
-  { id: 't-connectors', label: 'T-Connectors' },
-  { id: 'terminal-connectors', label: 'Terminal Connectors' },
-  { id: 'clamps-support', label: 'Clamps & Support Clamps' },
-  { id: 'spacers', label: 'Spacers' },
-  { id: 'other-hardware', label: 'Other Electrical Hardware' }
-];
-
-export function getProductCategory(specPage: number | undefined): string {
-  if (!specPage) return 'other-hardware';
-  if (specPage >= 1 && specPage <= 4) return 'palm-connectors';
-  if (specPage >= 5 && specPage <= 7) return 'ct-connectors';
-  if (specPage >= 11 && specPage <= 13) return 't-connectors';
-  if ([14, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31].includes(specPage)) return 'terminal-connectors';
-  if ([9, 10, 15, 16, 17, 30, 33, 34].includes(specPage)) return 'clamps-support';
-  if ([8, 32].includes(specPage)) return 'spacers';
-  if ([29, 35, 36, 37, 38, 39, 40].includes(specPage)) return 'other-hardware';
-  return 'other-hardware';
-}
-
