@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
-
 import Link from 'next/link';
 
 interface ServicesSectionProps {
@@ -13,66 +12,63 @@ interface ServicesSectionProps {
 export default function ServicesSection({ onSelectCategory }: ServicesSectionProps) {
   const services = [
     {
-      id: 'connectors',
-      number: '01',
-      title: 'Electrical Connectors',
-      description: 'Palm connectors, C.T. connectors, T connectors and more for reliable electrical transmission.',
-      featuredImage: '/images/catalogue/catalogue-01-connectors.png',
-      thumbnail: '/images/catalogue/thumb-01-connectors.png',
-      alt: 'Varad Engineering Palm Connectors and Electrical Connectors'
+      id: 'substation-clamps-connectors',
+      title: 'Substation Clamps & Connectors',
+      description: 'Precision-engineered palm connectors, CT connectors, T-connectors, PG clamps, spacers, and support clamps for high-voltage substations.',
+      featuredImage: '/images/products/substation-clamps/100-100-12.png',
+      thumbnail: '/images/products/substation-clamps/80-80-12.png',
+      alt: 'Varad Engineering Substation Clamps and Connectors'
     },
     {
-      id: 'clamps',
-      number: '02',
-      title: 'Clamps & Support Systems',
-      description: 'BPI support clamps, bus post clamps, and angular clamps for substation busbar retention.',
-      featuredImage: '/images/catalogue/catalogue-02-clamps.png',
-      thumbnail: '/images/catalogue/thumb-02-clamps.png',
-      alt: 'Varad Engineering BPI Support Clamps and Clamping Systems'
+      id: 'substation-hardware',
+      title: 'Substation Hardware',
+      description: 'Complete tension and suspension hardware assemblies, D-shackle fittings, and drop-type hardware for substation gantries.',
+      featuredImage: '/images/products/substation-hardware/single to single tension hardware.png',
+      thumbnail: '/images/products/substation-hardware/single to single suspension hardware.png',
+      alt: 'Varad Engineering Substation Tension and Suspension Hardware'
     },
     {
-      id: 'terminals',
-      number: '03',
-      title: 'Terminal & Equipment Connections',
-      description: 'Rigid and expansion terminal connectors linking 4" IPS aluminium tubes to CT, CVT and switchgear.',
-      featuredImage: '/images/catalogue/catalogue-03-terminals.png',
-      thumbnail: '/images/catalogue/thumb-03-terminals.png',
-      alt: 'Varad Engineering IPS Tube Terminal Connectors and Equipment Terminals'
-    },
-    {
-      id: 'suspension-tension',
-      number: '04',
-      title: 'Suspension, Tension & Earthing Hardware',
-      description: 'Suspension hardware strings, dead-end tension assemblies, spacers and flexible earthing bonds.',
+      id: 'earthwire-hardware',
+      title: 'Earthwire Hardware',
+      description: 'Hot-dip galvanized steel tension clamps, suspension clamp assemblies, and flexible copper bonding straps for ground wire and shielding.',
       featuredImage: '/images/catalogue/catalogue-04-suspension.png',
-      thumbnail: '/images/catalogue/thumb-04-suspension.png',
-      alt: 'Varad Engineering Suspension and Tension String Hardware Assemblies'
+      thumbnail: '/images/catalogue/expertise-05-earthing.png',
+      alt: 'Varad Engineering Earthwire Hardware and Grounding Components'
     },
     {
-      id: 'custom',
-      number: '05',
-      title: 'Custom Engineering Solutions',
-      description: 'Custom-built connectors, U-type breaker plates, and bespoke hardware fabricated as per client specifications.',
+      id: 'bimetallic-sheets-sleeves',
+      title: 'Bimetallic Sheets & Sleeves',
+      description: 'Friction-welded copper-aluminium transition plates and compression sleeves designed to eliminate galvanic corrosion.',
       featuredImage: '/images/catalogue/catalogue-05-custom.png',
-      thumbnail: '/images/catalogue/thumb-05-custom.png',
-      alt: 'Varad Engineering Custom Tooling and Fabricated Engineering Products'
+      thumbnail: '/images/catalogue/expertise-06-custom.png',
+      alt: 'Varad Engineering Bimetallic Transition Sheets and Sleeves'
+    },
+    {
+      id: 'transmission-line-hardware',
+      title: 'Transmission Line Hardware',
+      description: 'Single and double string suspension and tension assemblies, 0.4 series line hardware, and high-performance HTLS hardware systems.',
+      featuredImage: '/images/products/htls-hardware/htls hardware set.png',
+      thumbnail: '/images/products/htls-hardware/drake_aluminium_dead_end.png',
+      alt: 'Varad Engineering Transmission Line Hardware and HTLS Assemblies'
+    },
+    {
+      id: 'clamps-connectors-400kv-above',
+      title: 'Clamps & Connectors for 400 kV and Above',
+      description: 'Heavy-duty quad and twin T-connectors, rigid tube clamps, corona bells, bushing clamps, and BPI supports for 400kV+ EHV switchyards.',
+      featuredImage: '/images/products/400kv-clamps-connectors/t connector single to quad conductor horizontal.png',
+      thumbnail: '/images/products/400kv-clamps-connectors/rigid_connector_ips_tube.png',
+      alt: 'Varad Engineering 400kV and Above Clamps and Connectors'
     }
   ];
 
   const [activeIdx, setActiveIdx] = useState(0);
   const activeService = services[activeIdx];
 
-  const handleExplore = () => {
-    if (onSelectCategory) {
-      onSelectCategory(activeService.id);
-    }
-  };
-
   return (
     <section id="products" className="pt-14 sm:pt-16 lg:pt-20 pb-10 sm:pb-12 lg:pb-12 bg-white text-neutral-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* =========================================================================
-            TOP FEATURED AREA: Left Title, Center 3D Product Visual, Right Details
+            TOP FEATURED AREA: Left Title, Center Product Visual, Right Details
            ========================================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center mb-10 sm:mb-12 lg:mb-12">
           {/* 1. Left Side: Section Title & Description */}
@@ -97,7 +93,7 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
             {/* Primary Action Button */}
             <div className="pt-2">
               <Link
-                href="/products"
+                href={`/products?category=${activeService.id}`}
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#E31E24] hover:bg-[#C9181E] text-white text-sm font-bold tracking-wide transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
               >
                 <span>Explore Our Products</span>
@@ -106,9 +102,9 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
             </div>
           </div>
 
-          {/* 2. Center: Large 3D Product Visual */}
+          {/* 2. Center: Large Product Visual */}
           <div className="lg:col-span-5 relative flex items-center justify-center min-h-[280px] sm:min-h-[340px]">
-            {/* Subtle technical concentric ring accents */}
+            {/* Technical concentric ring accents */}
             <div className="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full border border-red-100/60 pointer-events-none" />
             <div className="absolute w-80 h-80 sm:w-[380px] sm:h-[380px] rounded-full border border-red-50/50 pointer-events-none" />
             <div className="absolute w-2 h-2 rounded-full bg-[#E31E24] -top-1 right-20 hidden sm:block opacity-70" />
@@ -131,40 +127,34 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
 
           {/* 3. Right Side: Active Service Breakdown */}
           <div className="lg:col-span-3 space-y-4 max-w-sm">
-            {/* Service Number with subtle lines */}
-            <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#E31E24] uppercase tracking-widest">
-              <span className="w-4 h-0.5 bg-neutral-300" />
-              <span>{activeService.number}</span>
-              <span className="w-4 h-0.5 bg-neutral-300" />
-            </div>
-
-            {/* Active Service Title */}
+            {/* Active Category Title */}
             <h3 className="text-2xl sm:text-[28px] font-bold text-[#0f172a] leading-tight tracking-tight">
               {activeService.title}
             </h3>
 
-            {/* Active Service Short Description */}
+            {/* Active Category Short Description */}
             <p className="text-sm text-neutral-600 leading-relaxed font-normal">
               {activeService.description}
             </p>
 
             {/* View Products link */}
             <div className="pt-1">
-              <button
+              <Link
+                href={`/products?category=${activeService.id}`}
                 onClick={() => onSelectCategory && onSelectCategory(activeService.id)}
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-900 hover:text-[#E31E24] transition-colors group cursor-pointer"
               >
                 <span className="underline underline-offset-4">View Products</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-[#E31E24]" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
 
         {/* =========================================================================
-            BOTTOM SERVICE NAVIGATION: 5 Interactive Categories matching reference
+            BOTTOM CATEGORY NAVIGATION: 6 Interactive Categories matching Products page
            ========================================================================= */}
-        <div className="flex lg:grid lg:grid-cols-5 gap-4 overflow-x-auto pb-3 lg:pb-0 scrollbar-none snap-x snap-mandatory">
+        <div className="flex lg:grid lg:grid-cols-6 gap-3 sm:gap-4 overflow-x-auto pb-3 lg:pb-0 scrollbar-none snap-x snap-mandatory">
           {services.map((item, idx) => {
             const isSelected = activeIdx === idx;
             return (
@@ -172,27 +162,16 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
                 key={item.id}
                 onClick={() => setActiveIdx(idx)}
                 onMouseEnter={() => setActiveIdx(idx)}
-                className={`group relative flex-shrink-0 w-[220px] sm:w-[240px] lg:w-auto snap-start rounded-xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer ${
+                className={`group relative flex-shrink-0 w-[200px] sm:w-[220px] lg:w-auto snap-start rounded-xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer ${
                   isSelected
                     ? 'border-2 border-[#E31E24] bg-white shadow-md'
                     : 'border border-neutral-200/90 bg-white hover:border-neutral-300 hover:shadow-sm'
                 }`}
               >
-                {/* Top Row: Number */}
-                <div className="mb-2">
-                  <span
-                    className={`text-xs font-mono font-bold tracking-wider ${
-                      isSelected ? 'text-[#E31E24]' : 'text-neutral-400'
-                    }`}
-                  >
-                    {item.number}
-                  </span>
-                </div>
-
-                {/* Middle: Title */}
-                <div className="mb-4 min-h-[38px]">
+                {/* Title */}
+                <div className="mb-4 min-h-[44px]">
                   <h4
-                    className={`text-sm sm:text-[15px] font-bold leading-snug tracking-tight transition-colors ${
+                    className={`text-xs sm:text-[14px] font-bold leading-snug tracking-tight transition-colors ${
                       isSelected ? 'text-[#0f172a]' : 'text-neutral-800 group-hover:text-neutral-950'
                     }`}
                   >
@@ -202,19 +181,25 @@ export default function ServicesSection({ onSelectCategory }: ServicesSectionPro
 
                 {/* Bottom Row: Circular arrow on left, thumbnail image on right */}
                 <div className="flex items-end justify-between gap-2 pt-3 border-t border-neutral-100">
-                  {/* Circular Arrow Button */}
-                  <div
+                  {/* Circular Arrow Link */}
+                  <Link
+                    href={`/products?category=${item.id}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onSelectCategory) onSelectCategory(item.id);
+                    }}
                     className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
                       isSelected
-                        ? 'bg-[#E31E24] text-white shadow-sm'
-                        : 'bg-neutral-100 text-neutral-500 group-hover:bg-neutral-200 group-hover:text-neutral-800'
+                        ? 'bg-[#E31E24] text-white shadow-sm hover:bg-[#C9181E]'
+                        : 'bg-neutral-100 text-neutral-500 group-hover:bg-[#E31E24] group-hover:text-white'
                     }`}
+                    aria-label={`View ${item.title}`}
                   >
                     <ArrowRight className="w-3.5 h-3.5" />
-                  </div>
+                  </Link>
 
                   {/* Thumbnail Image */}
-                  <div className="relative w-20 h-14 flex items-center justify-end">
+                  <div className="relative w-16 h-12 sm:w-20 sm:h-14 flex items-center justify-end">
                     <Image
                       src={item.thumbnail}
                       alt={item.alt}
