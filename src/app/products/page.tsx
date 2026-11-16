@@ -259,7 +259,21 @@ function ProductsExplorer() {
                                 className="object-contain p-0.5"
                               />
                             ) : (
-                              <PackageOpen className="w-5 h-5 text-slate-400" />
+                              <svg
+                                className={`w-5 h-5 stroke-[1.25] transition-colors ${
+                                  isSelected ? 'text-[#E31E24]' : 'text-slate-400 group-hover:text-slate-600'
+                                }`}
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <path d="M8 13h8" />
+                                <path d="M8 17h5" />
+                              </svg>
                             )}
                           </div>
 
@@ -347,21 +361,68 @@ function ProductsExplorer() {
                           )}
                         </>
                       ) : (
-                        <div className="flex flex-col items-center justify-center text-center p-6">
-                          <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mb-3 border border-slate-200">
-                            <PackageOpen className="w-8 h-8" />
+                        <div className="relative w-full h-full flex flex-col items-center justify-center text-center p-6 select-none bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px]">
+                          {/* Corner technical drafting marks */}
+                          <span className="absolute top-3 left-3 text-[11px] font-mono text-slate-300 pointer-events-none">+</span>
+                          <span className="absolute top-3 right-3 text-[11px] font-mono text-slate-300 pointer-events-none">+</span>
+                          <span className="absolute bottom-3 left-3 text-[11px] font-mono text-slate-300 pointer-events-none">+</span>
+                          <span className="absolute bottom-3 right-3 text-[11px] font-mono text-slate-300 pointer-events-none">+</span>
+
+                          {/* Precision CAD / Technical Blueprint Icon Container */}
+                          <div className="w-18 h-18 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center justify-center mb-4 text-slate-400">
+                            <svg
+                              className="w-9 h-9 stroke-[1.25]"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                              <polyline points="14 2 14 8 20 8" />
+                              <path d="M8 13h8" />
+                              <path d="M8 17h5" />
+                              <path d="M10 9H8" />
+                            </svg>
                           </div>
-                          <span className="text-xs font-bold uppercase tracking-wider text-slate-600 bg-slate-100 px-3 py-1 rounded-full mb-2">
-                            Specification Ready
-                          </span>
-                          <p className="text-xs text-slate-500 max-w-xs leading-relaxed">
-                            Product specifications and engineering details are ready. High-resolution photographs will be updated once client assets are provided.
-                          </p>
+
+                          {/* Professional neutral labels */}
+                          <div className="space-y-1.5 max-w-sm">
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-100 text-slate-600 text-[11px] font-mono uppercase tracking-wider font-semibold border border-slate-200/80">
+                              <span>Technical Specification Sheet</span>
+                            </div>
+                            <h4 className="text-sm sm:text-base font-bold text-slate-800 tracking-tight leading-snug">
+                              {selectedProduct.name}
+                            </h4>
+                            <p className="text-xs text-slate-500 font-normal">
+                              Fabricated to client drawings &amp; C.P.R.I. Bangalore test standards
+                            </p>
+                          </div>
+
+                          {/* Previous / Next buttons for navigation */}
+                          {activeCategoryProducts.length > 1 && (
+                            <>
+                              <button
+                                onClick={handlePrevProduct}
+                                aria-label="Previous product"
+                                className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-700 hover:text-[#E31E24] hover:bg-white transition-all cursor-pointer z-10"
+                              >
+                                <ChevronLeft className="w-5 h-5" />
+                              </button>
+                              <button
+                                onClick={handleNextProduct}
+                                aria-label="Next product"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-700 hover:text-[#E31E24] hover:bg-white transition-all cursor-pointer z-10"
+                              >
+                                <ChevronRight className="w-5 h-5" />
+                              </button>
+                            </>
+                          )}
                         </div>
                       )}
                     </div>
 
-                    {/* Thumbnail gallery: Multiple views of current product OR nearby products */}
+                    {/* Thumbnail gallery: Multiple views of current product OR nearby products with images */}
                     {productImages.length > 1 ? (
                       <div className="pt-1">
                         <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">
@@ -394,7 +455,7 @@ function ProductsExplorer() {
                           })}
                         </div>
                       </div>
-                    ) : thumbnailStripProducts.length > 1 ? (
+                    ) : thumbnailStripProducts.length > 1 && thumbnailStripProducts.some((p) => Boolean(p.image)) ? (
                       <div className="grid grid-cols-4 gap-2.5 pt-1">
                         {thumbnailStripProducts.map((thumbProd) => {
                           const isThumbSelected = thumbProd.id === selectedProduct.id;
@@ -419,7 +480,15 @@ function ProductsExplorer() {
                                   className="object-contain p-1"
                                 />
                               ) : (
-                                <PackageOpen className="w-6 h-6 text-slate-300" />
+                                <svg
+                                  className="w-6 h-6 stroke-[1.25] text-slate-300"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                >
+                                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                  <polyline points="14 2 14 8 20 8" />
+                                </svg>
                               )}
                             </button>
                           );
